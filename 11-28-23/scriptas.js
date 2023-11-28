@@ -31,7 +31,7 @@ if (loginisPatikrinimas) {
 	console.log(typeof x);
 	console.log(x);
 } else {
-	console.log("x yra mazesnis nei 5");
+	console.log("x yra didesnis nei 5");
 }
 
 let tekstas = "labass";
@@ -71,7 +71,7 @@ console.log(eilerastis);
 
 
 
-// jei prie skaiciaus yra pridedamas tekstas, galutinis kintamojo tipas yra skaicius
+// jei prie skaiciaus yra pridedamas tekstas, galutinis kintamojo tipas yra tekstas
 skaicius = 5;
 skaicius += "";
 console.log(typeof skaicius);
