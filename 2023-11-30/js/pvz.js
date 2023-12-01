@@ -54,7 +54,7 @@ else if (sk >= 50 && sk % 3 === 0) {
 		String.fromCharCode(a) +
 		String.fromCharCode(b) +
 		String.fromCharCode(c) +
-		String.fromCharCode(b);
+		String.fromCharCode(d);
 	console.log(`Skaicius: ${sk}\t Kategorija: 5, \t Rezultatas: ${stringas}`);
 } else {
 	console.log(`skaičius ${sk}, nepriklauso nei vienai kategorijai`);
