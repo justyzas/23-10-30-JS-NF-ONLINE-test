@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Document</title>
+	</head>
+	<body>
+		<!-- UI - User interface -->
+		<input
+			type="number"
+			id="num1"
+			placeholder="Iveskite pirmaji skaičiu"
+		/>
+		<select
+			name="operation"
+			id="operation"
+		>
+			<option value="+">+ (sudėtis)</option>
+			<option value="-">- (atimtis)</option>
+			<option value="*">* (daugyba)</option>
+			<option value="/">/ (dalyba)</option>
+			<option value="**">x² (kelimas)</option>
+		</select>
+		<input
+			type="number"
+			id="num2"
+			placeholder="Iveskite antraji skaičiu"
+		/>
+		<button onclick="calculate()">Apskaičiuoti</button>
+		<p id="rez"></p>
+		<script src="js/calc.js"></script>
+	</body>
+</html>
