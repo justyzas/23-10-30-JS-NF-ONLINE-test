@@ -24,8 +24,7 @@ for (let i = 2; i < 50; i++) {
 let atsitiktiniaiSkaiciai = [];
 
 for (let i = 0; i < 1000; i++) {
-	let randomSkaicius = rand(0, 10);
-	atsitiktiniaiSkaiciai.push(randomSkaicius);
+	atsitiktiniaiSkaiciai.push(rand(0, 10));
 	// atsitiktiniaiSkaiciai[i] = randomSkaicius;
 }
 
@@ -88,7 +87,7 @@ for (let i = 0; i < atsitiktiniaiSkaiciai.length; i++) {
 console.log("masyvas:" + atsitiktiniaiSkaiciai);
 console.log("Skaičių, su reikšme <3 arba >7 masyve yra: " + counter);
 
-let naujasMasyvas = [8, 7, 3, 46, 9, 7];
+let naujasMasyvas = [1, 8, 7, 3, 46, 9, 7, 8];
 //Kai norime pridėti elementus prie masyvo:
 naujasMasyvas.push(",");
 
@@ -102,6 +101,7 @@ console.log(naujasMasyvas);
 naujasMasyvas.shift();
 console.log(naujasMasyvas);
 
+naujasMasyvas.unshift(4);
 // Elemento šalinimas pagal indeksą
 // masyvoPavadinimas.splice(nuoKur, kiek)
 
