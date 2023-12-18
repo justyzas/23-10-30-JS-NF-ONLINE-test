@@ -116,13 +116,13 @@
 		</div>
 
 		<script src="./js/products.js"></script>
+
 		<script>
 			//CRUD:
 			//CREATE - Sukurti įrašą. Good
 			//READ - Peržiūrėti įrašą. Good
 			//UPDATE - Atnaujinti įrašą.
 			//DELETE - Ištrinti įrašą. Good
-
 			let editMode = false;
 			let currentProduct;
 
@@ -192,6 +192,7 @@
 				};
 
 				products.push(newProduct);
+
 				getTableContents();
 			};
 
@@ -205,15 +206,20 @@
 			};
 
 			const updateProduct = (event) => {
+				//Page reload prevencija
 				event.preventDefault();
-				console.log("Veikiu!");
+				//Pagal currentProduct indeksą, gautą iš atnaujinimo režimo funkcijos,
+				//Pakeiciame reiksmes i naujas, gautas is inputu.
 				products[currentProduct].title = titleInputElement.value;
 				products[currentProduct].price = priceInputElement.value;
 				products[currentProduct].stock = stockInputElement.value;
 				products[currentProduct].brand = brandInputElement.value;
 				products[currentProduct].category = categoryInputElement.value;
 
+				//Atnaujiname table su pakeistais duomenimis
 				getTableContents();
+
+				//resetinam state atgal
 				currentProduct = undefined;
 				editMode = false;
 				submitButtonElement.onclick = createNewRecord;
@@ -221,6 +227,7 @@
 				submitButtonElement.classList.remove("btn-success");
 				submitButtonElement.classList.add("btn-primary");
 
+				//resetinam inputu reiksmes i tuscias
 				titleInputElement.value = "";
 				priceInputElement.value = "";
 				stockInputElement.value = "";
@@ -228,11 +235,13 @@
 				categoryInputElement.value = "";
 			};
 
-			//Elemento atnaujinimas
+			//Elemento atnaujinimo režimo ijungimas
 			const setEdit = (id) => {
 				let elementIndex = products.findIndex((value) => value.id === id);
 
 				const product = products[elementIndex];
+
+				//inputu uzpildymas duomenimis
 				titleInputElement.value = product.title;
 				priceInputElement.value = product.price;
 				stockInputElement.value = product.stock;
