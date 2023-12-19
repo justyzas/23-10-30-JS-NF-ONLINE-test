@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<!-- <link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+			crossorigin="anonymous"
+		/>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+			crossorigin="anonymous"
+		></script> -->
+		<title>Document</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			.modal-background {
+				width: 100vw;
+				height: 100vh;
+				background-color: rgba(0, 0, 0, 0.3);
+				display: flex;
+				position: fixed;
+				justify-content: center;
+				align-items: center;
+				visibility: hidden;
+			}
+			.modal {
+				background-color: rgb(255, 255, 255);
+				width: 50%;
+				height: 50%;
+				padding: 1.5rem;
+			}
+			.half-width{
+				width: 50%;
+				margin: auto auto;
+				border: 0;
+				padding: 1rem;
+			}
+			.half-width::backdrop{
+				background: linear-gradient(45deg, green, blue);
+				opacity: 0.5;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="modal-background">
+			<div class="modal">
+				<div class="buttons">
+					<h3>Very interesting article</h3>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Consectetur quae neque praesentium quidem non repellat aliquid,
+						nostrum vitae dolor repellendus in voluptates voluptatum architecto
+						laborum ad placeat illo molestiae veritatis consequatur reiciendis
+						blanditiis dolore dignissimos reprehenderit! Dolores voluptatem,
+						possimus voluptatibus dicta excepturi reiciendis id cupiditate
+						quidem corporis quibusdam aut nisi neque veniam labore, voluptate,
+						minima rem. Consequuntur modi hic inventore facilis? Provident nam
+						laborum ipsa beatae est cupiditate, eligendi deleniti assumenda
+						explicabo fuga saepe cumque, illo nulla. Velit porro ad nulla dicta
+						quidem voluptatum recusandae enim voluptate nihil id aliquam vel
+						exercitationem vitae dolores, quibusdam tempora. Excepturi quasi
+						tempore corporis?
+					</p>
+					<hr />
+					<button onclick="closeModal()">Close</button>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<h3>Title</h3>
+			<p>
+				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta, itaque
+				quo tempora adipisci, deserunt ut facere sed consequuntur ducimus
+				molestiae enim error voluptatibus, dolor nostrum beatae libero? Vitae
+				recusandae excepturi consequuntur vel, reiciendis fugit nihil facilis.
+				In dolores mollitia corporis doloribus ipsam repellat at voluptatem
+				quasi fuga distinctio consectetur ducimus non ullam, ipsa eos? Cum
+				quaerat aliquam nulla accusamus possimus asperiores, a odio. Corrupti
+				doloribus similique quae doloremque perferendis possimus quas ullam.
+				Cumque totam animi debitis fuga sunt reiciendis cum atque maxime, ut
+				nobis possimus, quae vitae deserunt eligendi eum quas natus suscipit
+				assumenda porro eaque libero eius fugit non?
+			</p>
+			<hr />
+			<h3>Title</h3>
+			<p>
+				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta, itaque
+				quo tempora adipisci, deserunt ut facere sed consequuntur ducimus
+				molestiae enim error voluptatibus, dolor nostrum beatae libero? Vitae
+				recusandae excepturi consequuntur vel, reiciendis fugit nihil facilis.
+				In dolores mollitia corporis doloribus ipsam repellat at voluptatem
+				quasi fuga distinctio consectetur ducimus non ullam, ipsa eos? Cum
+				quaerat aliquam nulla accusamus possimus asperiores, a odio. Corrupti
+				doloribus similique quae doloremque perferendis possimus quas ullam.
+				Cumque totam animi debitis fuga sunt reiciendis cum atque maxime, ut
+				nobis possimus, quae vitae deserunt eligendi eum quas natus suscipit
+				assumenda porro eaque libero eius fugit non?
+			</p>
+			<button onclick="openModal();">Open modal</button>
+			<hr />
+			<h3>Title</h3>
+			<p>
+				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta, itaque
+				quo tempora adipisci, deserunt ut facere sed consequuntur ducimus
+				molestiae enim error voluptatibus, dolor nostrum beatae libero? Vitae
+				recusandae excepturi consequuntur vel, reiciendis fugit nihil facilis.
+				In dolores mollitia corporis doloribus ipsam repellat at voluptatem
+				quasi fuga distinctio consectetur ducimus non ullam, ipsa eos? Cum
+				quaerat aliquam nulla accusamus possimus asperiores, a odio. Corrupti
+				doloribus similique quae doloremque perferendis possimus quas ullam.
+				Cumque totam animi debitis fuga sunt reiciendis cum atque maxime, ut
+				nobis possimus, quae vitae deserunt eligendi eum quas natus suscipit
+				assumenda porro eaque libero eius fugit non?
+			</p>
+			<hr />
+			<h3>Title</h3>
+			<p>
+				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta, itaque
+				quo tempora adipisci, deserunt ut facere sed consequuntur ducimus
+				molestiae enim error voluptatibus, dolor nostrum beatae libero? Vitae
+				recusandae excepturi consequuntur vel, reiciendis fugit nihil facilis.
+				In dolores mollitia corporis doloribus ipsam repellat at voluptatem
+				quasi fuga distinctio consectetur ducimus non ullam, ipsa eos? Cum
+				quaerat aliquam nulla accusamus possimus asperiores, a odio. Corrupti
+				doloribus similique quae doloremque perferendis possimus quas ullam.
+				Cumque totam animi debitis fuga sunt reiciendis cum atque maxime, ut
+				nobis possimus, quae vitae deserunt eligendi eum quas natus suscipit
+				assumenda porro eaque libero eius fugit non?
+			</p>
+			<button onclick="modalDialog.showModal();">Open modal</button>
+			<hr />
+			<dialog class="half-width">
+				<h3>Very interesting article</h3>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+					Consectetur quae neque praesentium quidem non repellat aliquid,
+					nostrum vitae dolor repellendus in voluptates voluptatum architecto
+					laborum ad placeat illo molestiae veritatis consequatur reiciendis
+					blanditiis dolore dignissimos reprehenderit! Dolores voluptatem,
+					possimus voluptatibus dicta excepturi reiciendis id cupiditate
+					quidem corporis quibusdam aut nisi neque veniam labore, voluptate,
+					minima rem. Consequuntur modi hic inventore facilis? Provident nam
+					laborum ipsa beatae est cupiditate, eligendi deleniti assumenda
+					explicabo fuga saepe cumque, illo nulla. Velit porro ad nulla dicta
+					quidem voluptatum recusandae enim voluptate nihil id aliquam vel
+					exercitationem vitae dolores, quibusdam tempora. Excepturi quasi
+					tempore corporis?
+				</p>
+				<hr />
+				<button onclick="modalDialog.close()">Close</button>
+			</div>
+			</dialog>
+		</div>
+		<script>
+			// 1. modalinio lango valdymo variantas
+			const modalBackground = document.querySelector(".modal-background");
+			const modal = document.querySelector(".modal");
+			function openModal() {
+				modalBackground.style.visibility = "visible";
+			}
+			function closeModal() {
+				modalBackground.style.visibility = "hidden";
+			}
+
+			// modalBackground.onclick = (event) => {
+			// 	// event.stopPropagation();
+			// 	console.log("clicked on modal background");
+			// 	// closeModal();
+			// };
+			// modal.onclick = () => {
+			// 	console.log("clicked on modal");
+			// };
+			//2. modalinio lango valdymo variantas su <dialog>
+			const modalDialog = document.querySelector('dialog');
+			
+			// console.log(modalDialog);
+		</script>
+	</body>
+</html>
