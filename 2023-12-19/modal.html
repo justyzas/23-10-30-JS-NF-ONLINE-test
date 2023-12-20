@@ -172,14 +172,13 @@
 				modalBackground.style.visibility = "hidden";
 			}
 
-			// modalBackground.onclick = (event) => {
-			// 	// event.stopPropagation();
-			// 	console.log("clicked on modal background");
-			// 	// closeModal();
-			// };
-			// modal.onclick = () => {
-			// 	console.log("clicked on modal");
-			// };
+			modalBackground.onclick = (event) => {
+				console.log("clicked on modal background");
+			};
+			modal.onclick = (event) => {
+				console.log("clicked on modal, not closing it");
+				event.stopPropagation();
+			};
 			//2. modalinio lango valdymo variantas su <dialog>
 			const modalDialog = document.querySelector('dialog');
 			

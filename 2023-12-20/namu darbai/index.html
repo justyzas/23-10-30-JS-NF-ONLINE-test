@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Document</title>
+		<style>
+			table,
+			th,
+			td {
+				border: 1px solid black;
+				border-collapse: collapse;
+			}
+			table {
+				width: 100%;
+				margin-bottom: 2rem;
+			}
+			td {
+				text-align: center;
+			}
+			.space-right {
+				margin-right: 1rem;
+			}
+			form div {
+				width: 50%;
+			}
+			div label {
+				display: flex;
+				justify-content: space-between;
+				margin-bottom: 0.5rem;
+			}
+		</style>
+	</head>
+	<body>
+		<table>
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Age</th>
+					<th>Nationality</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		<form>
+			<div>
+				<label>
+					<span class="space-right">First Name</span>
+					<input
+						type="text"
+						placeholder="First Name"
+						id="firstNameInput"
+					/>
+				</label>
+			</div>
+			<div>
+				<label>
+					<span class="space-right">Last Name</span>
+					<input
+						type="text"
+						placeholder="Last Name"
+						id="lastNameInput"
+					/>
+				</label>
+			</div>
+			<div>
+				<label>
+					<span class="space-right">Age</span>
+					<input
+						type="text"
+						placeholder="Age"
+						id="ageInput"
+					/>
+				</label>
+			</div>
+			<div>
+				<label>
+					<span class="space-right">Nationality</span>
+					<input
+						type="text"
+						placeholder="Nationality"
+						id="nationalityInput"
+					/>
+				</label>
+			</div>
+		</form>
+		<div>
+			<!-- Mygtuko funkcionalumas pasinaudojant elementu JS'e -->
+			<button id="add-button">Add</button>
+		</div>
+
+		<h2>Pasalinimas</h2>
+		<input
+			type="number"
+			placeholder="numeriukas"
+			id="number"
+		/>
+		<button id="remove-button">Remove</button>
+		<form>
+			<h2>Atnaujinimas</h2>
+			<div>
+				<label>
+					<span class="space-right">ID</span>
+					<input
+						type="text"
+						placeholder="ID number"
+						id="idInputUpdate"
+					/>
+				</label>
+				<label>
+					<span class="space-right">First Name</span>
+					<input
+						type="text"
+						placeholder="First Name"
+						id="firstNameInputUpdate"
+					/>
+				</label>
+			</div>
+			<div>
+				<label>
+					<span class="space-right">Last Name</span>
+					<input
+						type="text"
+						placeholder="Last Name"
+						id="lastNameInputUpdate"
+					/>
+				</label>
+			</div>
+			<div>
+				<label>
+					<span class="space-right">Age</span>
+					<input
+						type="text"
+						placeholder="Age"
+						id="ageInputUpdate"
+					/>
+				</label>
+			</div>
+			<div>
+				<label>
+					<span class="space-right">Nationality</span>
+					<input
+						type="text"
+						placeholder="Nationality"
+						id="nationalityInputUpdate"
+					/>
+				</label>
+			</div>
+			<input
+				type="submit"
+				value="Update"
+			/>
+		</form>
+		<!-- <script src="./js/objektai.js"></script> -->
+		<script src="./js/dynamicContent.js"></script>
+	</body>
+</html>
