@@ -22,8 +22,21 @@
 	</head>
 	<body>
 		<div class="container">
+			<nav class="mb-3">
+				<a
+					href="./products.html"
+					class="me-3 btn btn-primary"
+					>Produktai</a
+				>
+				<a
+					href="./admin.html"
+					class="btn btn-primary"
+					>Admin panelė</a
+				>
+			</nav>
 			<form>
-				<div class="row mb-5">
+				<h2>Produktų pridėjimas</h2>
+				<div class="row mb-2">
 					<!-- - 12 vienoje eiluteje, tie columnai kelsis i sekancia eilute -->
 
 					<div class="col-4">
@@ -120,7 +133,7 @@
 					</div>
 					<div class="col-4 mt-2">
 						<button
-							class="btn btn-primary mt-4"
+							class="btn btn-primary"
 							id="submit"
 						>
 							Submit
@@ -128,7 +141,74 @@
 					</div>
 				</div>
 			</form>
-
+			<hr />
+			<form action="">
+				<h2>Produktų filtracija</h2>
+				<div class="row mb-5">
+					<div class="col-4 mt-2">
+						<label for="filter-product-name">Pavadinimas:</label>
+						<input
+							type="text"
+							id="filter-product-name"
+							name="filter-product-name"
+							class="form-control"
+						/>
+					</div>
+					<div class="col-4 mt-2">
+						<label for="filter-product-priceFrom">Kaina nuo:</label>
+						<input
+							type="number"
+							id="filter-product-priceFrom"
+							min="0"
+							name="filter-product-priceFrom"
+							class="form-control"
+						/>
+					</div>
+					<div class="col-4 mt-2">
+						<label for="filter-product-priceTo">Kaina iki:</label>
+						<input
+							type="number"
+							id="filter-product-priceTo"
+							min="0"
+							name="filter-product-priceTo"
+							class="form-control"
+						/>
+					</div>
+					<div class="col-4 mt-2">
+						<label for="filter-product-brand">Prekinis ženklas:</label>
+						<input
+							type="text"
+							id="filter-product-brand"
+							name="filter-product-brand"
+							class="form-control"
+						/>
+					</div>
+					<div class="col-4 mt-2">
+						<label for="filter-product-category">Kategorija:</label>
+						<select
+							name="filter-product-category"
+							id="filter-product-category"
+							class="form-select"
+						>
+							<option>smartphones</option>
+							<option>laptops</option>
+							<option>fragrances</option>
+							<option>skincare</option>
+							<option>groceries</option>
+							<option>home-decoration</option>
+						</select>
+					</div>
+					<div class="col-4 mt-2">
+						<label for="filter-product-description">Aprašymas:</label>
+						<input
+							type="text"
+							id="filter-product-description"
+							name="filter-product-description"
+							class="form-control"
+						/>
+					</div>
+				</div>
+			</form>
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -158,35 +238,8 @@
 		</div>
 		<dialog
 			id="productInfo"
-			style="width: 70%"
-		>
-			<div style="max-width: 70%; margin: 0 auto">
-				<img
-					src="https://i.dummyjson.com/data/products/1/thumbnail.jpg"
-					alt="product photo"
-				/>
-				<div class="product-details">
-					<div class="row">
-						<span class="col-2 fw-bold">Nuolaida:</span>
-						<span class="col-1">-10%</span>
-					</div>
-					<div class="row">
-						<span class="col-2 fw-bold">Įvertinimas</span>
-						<span class="col-1">4.23</span>
-					</div>
-					<div class="row">
-						<span class="col-2 fw-bold">Aprašymas</span>
-						<span class="col-6"
-							>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos
-							ducimus libero veniam odio voluptatum expedita aspernatur aliquid
-							amet. Explicabo delectus eligendi quibusdam excepturi quasi in
-							veniam aliquid a id! Quasi porro voluptate quae numquam pariatur,
-							minima inventore nisi eaque ad!</span
-						>
-					</div>
-				</div>
-			</div>
-		</dialog>
+			style="width: 70%; padding: 0"
+		></dialog>
 
 		<script>
 			//CRUD:
@@ -194,12 +247,16 @@
 			//READ - Peržiūrėti įrašą. Good
 			//UPDATE - Atnaujinti įrašą. Good
 			//DELETE - Ištrinti įrašą. Good
-			console.log(localStorage.getItem("products"));
 			if (!localStorage.getItem("products"))
 				localStorage.setItem("products", "[]");
 
 			const products = JSON.parse(localStorage.getItem("products"));
-			let currentId = 1;
+
+			if (!localStorage.getItem("currentId"))
+				localStorage.setItem("currentId", "1");
+
+			let currentId = +localStorage.getItem("currentId");
+
 			let editMode = false;
 			let currentProduct;
 
@@ -214,8 +271,51 @@
 				photoElement = document.getElementById("imageUrl"),
 				discountElement = document.getElementById("discount"),
 				ratingElement = document.getElementById("rating"),
-				descriptionElement = document.getElementById("description");
+				descriptionElement = document.getElementById("description"),
+				filterNameElement = document.getElementById("filter-product-name"),
+				filterPriceFromElement = document.getElementById(
+					"filter-product-priceFrom"
+				),
+				filterPriceToElement = document.getElementById(
+					"filter-product-priceTo"
+				),
+				filterBrandElement = document.getElementById("filter-product-brand"),
+				filterCategoryElement = document.getElementById(
+					"filter-product-category"
+				),
+				filterDescriptionElement = document.getElementById(
+					"filter-product-description"
+				);
 
+			filterNameElement.onkeyup = filter;
+			filterPriceFromElement.onkeyup = filter;
+			filterPriceToElement.onkeyup = filter;
+			filterBrandElement.onkeyup = filter;
+
+			function filter() {
+				let productName = filterNameElement.value.toLowerCase();
+				let minPrice = +filterPriceFromElement.value;
+				let maxPrice = +filterPriceToElement.value;
+				let brandName = filterBrandElement.value.toLowerCase();
+
+				console.log(brandName);
+				let filteredArray = products.filter((product) =>
+					product.title.toLowerCase().includes(productName)
+				);
+				filteredArray = filteredArray.filter(
+					(product) => product.price >= minPrice
+				);
+				if (maxPrice !== 0)
+					filteredArray = filteredArray.filter(
+						(product) => product.price <= maxPrice
+					);
+
+				filteredArray = filteredArray.filter((product) =>
+					product.brand.toLowerCase().includes(brandName)
+				);
+				getTableContents(filteredArray);
+				// filteredArray = filteredArray.filter();
+			}
 			//Sis budas - suveikia
 			// generateTableContent()
 			// function generateTableContent()
@@ -234,10 +334,10 @@
 			//     console.log('funkcija')
 			// })()
 
-			const getTableContents = () => {
+			const getTableContents = (productsArray) => {
 				let dynamicHTML = ``;
 
-				for (const product of products) {
+				for (const product of productsArray) {
 					dynamicHTML += `<tr>
 						<td onclick="showModal(${product.id})">${product.id}</td>
 						<td>${product.title}</td>
@@ -259,13 +359,47 @@
 				dynamicDataElement.innerHTML = dynamicHTML;
 				// dynamicDataElement
 			};
-			getTableContents();
+			getTableContents(products);
 
 			const showModal = (id) => {
 				let elementIndex = products.findIndex((value) => value.id === id);
 				const product = products[elementIndex];
+
+				let dynamicHTML = `<div id="modalBody" style="width:100%; height: 100%;"><div style="max-width: 70%; margin: 0 auto; padding: .5rem;">
+				<img
+					src="${product.thumbnail}"
+					alt="product photo"
+				/>
+				<div class="product-details">
+					<div class="row">
+						<span class="col-lg-2 fw-bold">Nuolaida:</span>
+						<span class="col-lg-1">-${product.discountPercentage}%</span>
+					</div>
+					<div class="row">
+						<span class="col-lg-2 fw-bold">Įvertinimas</span>
+						<span class="col-lg-1">${product.rating}</span>
+					</div>
+					<div class="row">
+						<span class="col-lg-2 fw-bold">Aprašymas</span>
+						<span class="col-10"
+							>${product.description}</span
+						>
+					</div>
+				</div>
+				<button class="btn btn-danger mt-3" onclick="modalElement.close()">Uždaryti</button>
+			</div></div>`;
+				modalElement.innerHTML = dynamicHTML;
+				document.querySelector("#modalBody").onclick = (event) => {
+					event.stopPropagation();
+					console.log("Clicked on modal window");
+				};
 				modalElement.showModal();
 			};
+
+			modalElement.onclick = () => {
+				modalElement.close();
+			};
+
 			const createNewRecord = (event) => {
 				//Prevencija nuo iprastinio elgesio.
 				event.preventDefault();
@@ -284,7 +418,8 @@
 				currentId++;
 				products.push(newProduct);
 				localStorage.setItem("products", JSON.stringify(products));
-				getTableContents();
+				localStorage.setItem("currentId", currentId);
+				getTableContents(products);
 			};
 
 			submitButtonElement.onclick = createNewRecord;
@@ -293,7 +428,7 @@
 			const deleteProduct = (id) => {
 				let elementIndex = products.findIndex((value) => value.id === id);
 				products.splice(elementIndex, 1);
-				getTableContents();
+				getTableContents(products);
 				localStorage.setItem("products", JSON.stringify(products));
 			};
 
@@ -303,13 +438,17 @@
 				//Pagal currentProduct indeksą, gautą iš atnaujinimo režimo funkcijos,
 				//Pakeiciame reiksmes i naujas, gautas is inputu.
 				products[currentProduct].title = titleInputElement.value;
-				products[currentProduct].price = priceInputElement.value;
-				products[currentProduct].stock = stockInputElement.value;
+				products[currentProduct].price = +priceInputElement.value;
+				products[currentProduct].stock = +stockInputElement.value;
 				products[currentProduct].brand = brandInputElement.value;
 				products[currentProduct].category = categoryInputElement.value;
+				products[currentProduct].thumbnail = photoElement.value;
+				products[currentProduct].rating = +ratingElement.value;
+				products[currentProduct].discountPercentage = +discountElement.value;
+				products[currentProduct].description = descriptionElement.value;
 
 				//Atnaujiname table su pakeistais duomenimis
-				getTableContents();
+				getTableContents(products);
 
 				//resetinam state atgal
 				currentProduct = undefined;
@@ -325,6 +464,10 @@
 				stockInputElement.value = "";
 				brandInputElement.value = "";
 				categoryInputElement.value = "";
+				photoElement.value = "";
+				ratingElement.value = "";
+				discountElement.value = "";
+				descriptionElement.value = "";
 				localStorage.setItem("products", JSON.stringify(products));
 			};
 
@@ -340,6 +483,10 @@
 				stockInputElement.value = product.stock;
 				brandInputElement.value = product.brand;
 				categoryInputElement.value = product.category;
+				photoElement.value = product.thumbnail;
+				ratingElement.value = product.rating;
+				discountElement.value = product.discountPercentage;
+				descriptionElement.value = product.description;
 
 				submitButtonElement.innerText = "Update";
 				submitButtonElement.classList.add("btn-success");
