@@ -1,0 +1,62 @@
+body {
+	font-family: "Single Day", cursive;
+	margin: 0;
+}
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+nav {
+	background-color: rgb(53, 9, 49);
+}
+
+.nav-container {
+	padding: 1rem 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+.nav-container input,
+.nav-container select {
+	background-color: rgb(47, 45, 57);
+	border: 0;
+	padding: 0.5rem;
+	border-radius: 6px;
+	color: rgb(187, 187, 187);
+	width: 18%;
+}
+
+.nav-container button {
+	background-color: rgb(72, 48, 188);
+	border: 0;
+	border-radius: 4px;
+	color: white;
+	padding: 0.25rem 0.5rem;
+	cursor: pointer;
+}
+
+.nav-container button:hover {
+	background-color: rgb(66, 49, 150);
+}
+
+.drinks {
+	margin-top: 2rem;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 2rem;
+}
+
+.drink {
+	width: 80%;
+	margin: 0 auto;
+	box-shadow: 1px 2px 10px rgb(66, 49, 150);
+}
+
+.drink img {
+	width: 100%;
+}
+
+.drink .drink-title {
+	text-align: center;
+}

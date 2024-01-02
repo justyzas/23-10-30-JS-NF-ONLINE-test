@@ -5,6 +5,8 @@ fetch("https://dog.ceo/api/breeds/image/random")
 		document.write(`<img src="${atsakymas.message}"/>`);
 	}); //2. Iskoduotas atsakymas yra panaudojamas;
 
+//
+//
 fetch("https://dog.ceo/api/breeds/list/all")
 	.then((atsakymas) => atsakymas.json())
 	.then((atsakymas) => console.log(atsakymas));
