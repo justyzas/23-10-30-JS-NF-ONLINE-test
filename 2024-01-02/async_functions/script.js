@@ -18,18 +18,18 @@
 // 	.then((response) => console.log(response))
 // 	.catch((error) => console.log(error));
 
-// const pazadas = new Promise((resolve, reject) => {
-// 	let isValidUrl = false;
-// 	console.log("Prasidejo uzklausa i serveri");
-// 	if (isValidUrl)
-// 		setTimeout(() => {
-// 			resolve("Zinute is serverio");
-// 		}, 1000);
-// 	else reject(new Error("Neteisingai nurodytas url"));
-// 	console.log("Pasibaige uzklausa i serveri");
-// })
-// 	.then((atsakymas) => console.log(atsakymas))
-// 	.catch((klaida) => console.log(klaida));
+const pazadas = new Promise((resolve, reject) => {
+	let isValidUrl = false;
+	console.log("Prasidejo uzklausa i serveri");
+	if (isValidUrl)
+		setTimeout(() => {
+			resolve("Zinute is serverio");
+		}, 1000);
+	else reject(new Error("Neteisingai nurodytas url"));
+	console.log("Pasibaige uzklausa i serveri");
+})
+	.then((atsakymas) => console.log(atsakymas))
+	.catch((klaida) => console.log(klaida));
 
 // console.log("Tesiamas darbas....");
 // console.log("Tesiamas darbas....");

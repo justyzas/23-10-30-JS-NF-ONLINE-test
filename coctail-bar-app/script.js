@@ -166,7 +166,6 @@ async function filter() {
 	}
 	generateDrinksHTML(filteredArray);
 }
-
 async function initialization() {
 	// 1. selectu uzpildymas
 	await fillSelectElements();
