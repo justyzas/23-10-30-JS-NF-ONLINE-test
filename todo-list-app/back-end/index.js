@@ -22,6 +22,10 @@ server.use(
 const users = [];
 const todos = [{ id: 1, todo: "Nueiti i darba" }];
 
+async function writeFile(obj) {
+	// ...
+}
+
 server.get("/user/:id", (req, res) => {
 	console.log("Method: " + req.method);
 	console.log("URL: " + req.originalUrl);
@@ -34,18 +38,19 @@ server.get("/user/:id", (req, res) => {
 
 // server.get('/register')
 
-server.post("/user/register", (req, res) => {
+server.post("/user/register", async (req, res) => {
 	// console.log(req.body);
 	try {
 		const username = req.body.username;
 		const email = req.body.email;
 		const password = req.body.password;
-		users.push({
+		data.users.push({
 			id: users.length + 1,
 			username: username,
 			email: email,
 			password: password,
 		});
+		await writeFile(data);
 		req.session.username = username;
 		req.session.userId = users[users.length - 1].id;
 		res.send("Atsakymas is serverio");
