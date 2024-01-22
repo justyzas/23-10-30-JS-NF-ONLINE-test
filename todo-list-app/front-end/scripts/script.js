@@ -1,6 +1,6 @@
 async function checkSession() {
 	try {
-		const promise = await fetch("http://localhost/server/user/session-check", {
+		const promise = await fetch("http://localhost/server/users/session-check", {
 			credentials: "include",
 		});
 		const answer = await promise.json();
@@ -19,7 +19,7 @@ const usernameField = document.querySelector("#register-username"),
 	registerButton = document.querySelector("#send-registration");
 
 async function register() {
-	const promise = await fetch("http://localhost/server/user/register", {
+	const promise = await fetch("http://localhost/server/users/register", {
 		method: "POST",
 		credentials: "include",
 		headers: {
@@ -41,7 +41,7 @@ const loginUsernameElement = document.querySelector("#login-username"),
 	loginPasswordElement = document.querySelector("#login-password"),
 	loginButton = document.querySelector("#login-button");
 async function login() {
-	fetch("http://localhost/server/user/login", {
+	fetch("http://localhost/server/users/login", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",

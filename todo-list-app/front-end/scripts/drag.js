@@ -36,9 +36,13 @@ for (const dropZone of dropZones) {
 		if (event.target.parentElement.classList.contains("todo-list")) {
 			event.target.parentElement.classList.remove("dragover");
 			document.querySelector(".all-todos").appendChild(dragElement);
+			// moveFromTodoToDone(event);
+			updateTodo({ done: true });
 		} else if (event.target.classList.contains("dropzone")) {
 			event.target.classList.remove("dragover");
 			event.target.appendChild(dragElement);
+			// moveFromDoneToTodo(event);
+			updateTodo({ done: false });
 		}
 	});
 }
