@@ -1,7 +1,8 @@
 const express = require("express");
 const data = require("../data.json");
 const router = express.Router();
-const { writeFile } = require("../utils/fileOperations");
+const FileIO = require("../utils/fileOperations");
+const dataFile = new FileIO("../data.json");
 
 router.post("/register", async (req, res) => {
 	// console.log(req.body);
@@ -16,7 +17,7 @@ router.post("/register", async (req, res) => {
 			password: password,
 		});
 		data.userId++;
-		await writeFile(data);
+		await dataFile.writeFile(data);
 		req.session.loggedIn = true;
 		req.session.username = username;
 		req.session.userId = data.users[data.users.length - 1].id;
