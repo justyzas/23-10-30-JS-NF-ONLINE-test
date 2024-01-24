@@ -6,6 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
+		<!-- CSS ir JS įtraukimas iš /public aplanko naudojantis serverio endpoint'u -->
 		<link
 			rel="stylesheet"
 			href="public/main.css"
@@ -16,6 +17,7 @@
 		<!-- EJS komponentu itraukimas i html struktūrą -->
 		<%- include('./components/nav-bar.ejs') %> 
 		<div class="container">
+			<!-- IF/ELSE statement'as su EJS sintakse -->
 			<% if(!username) {%>
 
 				<h5>Prašome prisijungti</h5>
@@ -35,12 +37,13 @@
 					cum?
 				</p>
 				<ul>
+					<!-- FOR ciklas su EJS sintakse -->
 					<% for(const product of list){ %>
 						<li><%= product %></li>
 					<% } %>
 				</ul>
 		</div>
-		
+		<!-- CSS ir JS įtraukimas iš /public aplanko naudojantis serverio endpoint'u -->
 		<script src="public/index.js"></script>
 	</body>
 </html>
