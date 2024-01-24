@@ -1,0 +1,22 @@
+.red {
+	color: red;
+}
+
+.container{
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+body{
+	margin: 0;
+	padding: 0;
+}
+
+nav{
+	background-color: #2E3532;
+	color: white;
+}
+
+a{
+	color: white;
+}

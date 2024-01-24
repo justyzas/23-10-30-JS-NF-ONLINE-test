@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<link
+			rel="stylesheet"
+			href="public/main.css"
+		/>
+		<title><%= title %></title>
+	</head>
+	<body>
+		<!-- EJS komponentu itraukimas i html struktūrą -->
+		<%- include('./components/nav-bar.ejs') %> 
+		<div class="container">
+			<% if(!username) {%>
+
+				<h5>Prašome prisijungti</h5>
+		
+				<% }else{ %>
+		
+				<h5>Sveiki atvykę, <%= username %></h5>
+		
+				<% } %>
+		
+		
+		
+		
+				<p class="red">
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia fugiat
+					repudiandae, animi nemo inventore fugit aliquam obcaecati corporis eveniet
+					cum?
+				</p>
+				<ul>
+					<% for(const product of list){ %>
+						<li><%= product %></li>
+					<% } %>
+				</ul>
+		</div>
+		
+		<script src="public/index.js"></script>
+	</body>
+</html>
