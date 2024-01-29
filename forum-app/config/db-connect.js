@@ -4,7 +4,9 @@ require("dotenv").config();
 
 function config() {
 	// process.env - laiko visus aplinkos kintamuosius
-	console.log(process.env.A_KINTAMASIS);
+
+	// console.log(process.env.A_KINTAMASIS);
+
 	//Prisijungimas prie duomenų bazės pasinaudojant URL
 	mongoose.connect(
 		process.env.MONGO_CONNECTION.replace("__DB_USER", process.env.DB_USER)
@@ -13,7 +15,6 @@ function config() {
 			.replace("__DB_NAME", process.env.DB_NAME)
 	);
 	const db = mongoose.connection;
-	``;
 
 	//DB listeneriai, kurie nusako ar prie DB  buvo prisijungta sėkmingai ar ne
 	db.on("error", (error) => {

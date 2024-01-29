@@ -6,44 +6,64 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
-		<!-- CSS ir JS įtraukimas iš /public aplanko naudojantis serverio endpoint'u -->
+		<title>Forumas</title>
 		<link
 			rel="stylesheet"
-			href="public/main.css"
+			href="/public/index.css"
 		/>
-		<title><%= title %></title>
+		<link
+			rel="stylesheet"
+			href="/public/grid.css"
+		/>
 	</head>
 	<body>
-		<!-- EJS komponentu itraukimas i html struktūrą -->
-		<%- include('./components/nav-bar.ejs') %> 
-		<div class="container">
-			<!-- IF/ELSE statement'as su EJS sintakse -->
-			<% if(!username) {%>
-
-				<h5>Prašome prisijungti</h5>
-		
-				<% }else{ %>
-		
-				<h5>Sveiki atvykę, <%= username %></h5>
-		
-				<% } %>
-		
-		
-		
-		
-				<p class="red">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia fugiat
-					repudiandae, animi nemo inventore fugit aliquam obcaecati corporis eveniet
-					cum?
-				</p>
-				<ul>
-					<!-- FOR ciklas su EJS sintakse -->
-					<% for(const product of list){ %>
-						<li><%= product %></li>
-					<% } %>
-				</ul>
+		<%- include('./components/header.ejs') %>
+		<!-- CONTENT -->
+		<div class="container gap-from-top">
+			<table>
+				<thead>
+					<tr>
+						<th class="col-6">Topics</th>
+						<th class="col-1">Replies</th>
+						<th class="col-1">Views</th>
+						<th class="col-4">Last post</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%- include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %> <%-
+					include('./components/table-row.ejs') %>
+				</tbody>
+			</table>
 		</div>
-		<!-- CSS ir JS įtraukimas iš /public aplanko naudojantis serverio endpoint'u -->
-		<script src="public/index.js"></script>
+
+		<script src="/public/index.js"></script>
 	</body>
 </html>

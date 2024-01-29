@@ -13,14 +13,37 @@ const schema = new mongoose.Schema({
 		minLength: 8,
 		maxLength: 120,
 	},
+	password: {
+		type: String,
+		required: true,
+	},
+	salt: String,
+	birthDate: {
+		type: String,
+		required: true,
+	},
+	profilePicture: {
+		type: String,
+		required: true,
+	},
+	postsCount: {
+		type: Number,
+		default: 0,
+	},
+	commentsCount: {
+		type: Number,
+		default: 0,
+	},
+	likes: {
+		type: Number,
+		default: 0,
+	},
+	dislikes: {
+		type: Number,
+		default: 0,
+	},
 });
 
 const model = mongoose.model("user", schema);
 
 module.exports = model;
-
-// {
-//     username: "justelio"
-//     password:"aosuihfas"
-//     email: 'asdouihas'
-// }
