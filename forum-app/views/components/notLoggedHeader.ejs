@@ -1,0 +1,32 @@
+<!-- HEADER -->
+<header class="header">
+	<a href="/"
+		><img
+			class="logo"
+			src="https://static.goanywhere.com/images/logos/fta-goanywhere-logo-light.svg"
+	/></a>
+
+	<nav>
+		<div class="nav-item">
+			<a
+				href="/"
+				class="<%= activeTab === 'Home' ? 'active-nav-item' : '' %>"
+				>Home</a
+			>
+		</div>
+		<div class="nav-item">
+			<a
+				href="/login"
+				class="<%= activeTab === 'Login' ? 'active-nav-item' : '' %>"
+				>Login</a
+			>
+		</div>
+		<div class="nav-item">
+			<a
+				href="/register"
+				class="<%= activeTab === 'Register' ? 'active-nav-item' : '' %>"
+				>Register</a
+			>
+		</div>
+	</nav>
+</header>

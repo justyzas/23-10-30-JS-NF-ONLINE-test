@@ -6,7 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
-		<title>Registracija</title>
+		<title><%= title %></title>
 		<link
 			rel="stylesheet"
 			href="public/grid.css"
@@ -21,7 +21,7 @@
 		></script>
 		<link
 			rel="stylesheet"
-			href="/public/register.css"
+			href="/public/form.css"
 		/>
 	</head>
 	<body>
@@ -68,10 +68,22 @@
 				<input
 					type="file"
 					id="profile-photo"
-					accept=".jpeg, .png, .gif, .bmp"
+					accept=".jpeg, .png, .gif, .bmp, .jpg"
 				/>
 			</div>
-			<button class="register-button">Register</button>
+			<div>
+				<a
+					href="/login"
+					class="standart-link"
+					>Already have an account?</a
+				>
+			</div>
+			<button
+				class="standart-button"
+				id="registration"
+			>
+				Register
+			</button>
 		</div>
 		<script src="/public/register.js"></script>
 	</body>

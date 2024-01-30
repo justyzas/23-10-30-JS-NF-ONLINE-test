@@ -22,15 +22,3 @@ label input {
 label input:focus {
 	outline: 2px solid rgb(190, 231, 251);
 }
-
-.register-button {
-	background-color: #004442;
-	color: white;
-	border: none;
-	border-radius: 4px;
-	padding: 0.5rem 1rem;
-	cursor: pointer;
-}
-.register-button:hover {
-	background-color: #035553;
-}

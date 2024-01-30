@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title><%= title %></title>
+		<link
+			rel="stylesheet"
+			href="public/grid.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="/public/index.css"
+		/>
+		<script
+			src="/public/index.js"
+			defer
+		></script>
+		<link
+			rel="stylesheet"
+			href="/public/form.css"
+		/>
+	</head>
+	<body>
+		<%- include('./components/header.ejs') %>
+		<div class="container gap-from-top">
+			<form
+				action="/api/user/login"
+				method="post"
+			>
+				<div>
+					<label>
+						<span>Prisijungimo vardas</span>
+						<input
+							type="text"
+							name="loginName"
+						/>
+					</label>
+				</div>
+				<div>
+					<label>
+						<span>Slaptažodis</span>
+						<input
+							type="password"
+							name="password"
+						/>
+					</label>
+				</div>
+				<div>
+					<a
+						href="/register"
+						class="standart-link"
+						>Still don't have an account?</a
+					>
+				</div>
+				<button class="standart-button">Prisijungti</button>
+			</form>
+		</div>
+	</body>
+</html>
