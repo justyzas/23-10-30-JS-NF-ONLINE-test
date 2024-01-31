@@ -47,6 +47,11 @@ const schema = new mongoose.Schema({
 		default: false,
 		required: true,
 	},
+	registrationDate: {
+		type: Date,
+		default: new Date(),
+		required: true,
+	},
 });
 
 const model = mongoose.model("user", schema);

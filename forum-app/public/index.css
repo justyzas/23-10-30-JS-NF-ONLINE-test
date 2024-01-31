@@ -1,3 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+body {
+	background-image: url(/public/dev-images/background.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center center;
+	min-height: 100vh;
+	font-family: "Roboto", sans-serif;
+}
 header {
 	background-color: #004442;
 	transition: background-color 0.3s;
@@ -80,9 +90,11 @@ body {
 .container {
 	max-width: 1000px;
 	margin: 0 auto;
+	padding: 1.25rem;
 }
+
 .gap-from-top {
-	margin-top: 100px;
+	margin-top: 40px;
 }
 .content {
 	background-color: rgb(235, 235, 235);
@@ -121,7 +133,10 @@ tr th {
 	color: white;
 }
 tbody tr:nth-child(even) {
-	background-color: #f0f0f0;
+	background-color: #f0f0f081;
+}
+tbody tr:nth-child(odd) {
+	background-color: #c6c6c6c4;
 }
 td,
 th {
@@ -235,4 +250,25 @@ tbody tr {
 }
 .bg-content {
 	background-color: rgb(245, 245, 245);
+}
+
+.card {
+	border-radius: 6px;
+	background-color: rgba(255, 255, 255, 0.769);
+}
+
+.error {
+	background-color: rgb(250, 103, 103);
+	color: rgb(110, 25, 25);
+	border-radius: 3px;
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+}
+
+.message {
+	background-color: rgb(154, 246, 136);
+	color: rgb(41, 110, 21);
+	border-radius: 3px;
+	padding: 0.5rem 1rem;
+	cursor: pointer;
 }

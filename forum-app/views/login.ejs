@@ -23,10 +23,13 @@
 			rel="stylesheet"
 			href="/public/form.css"
 		/>
+		<script src="https://cdn.tailwindcss.com"></script>
 	</head>
 	<body>
 		<%- include('./components/header.ejs') %>
 		<div class="container gap-from-top">
+			<%- include('./components/errorMessage.ejs') %>
+
 			<form
 				action="/api/user/login"
 				method="post"
