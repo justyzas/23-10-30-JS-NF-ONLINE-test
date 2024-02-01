@@ -32,8 +32,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% for( const postas of posts ) { %> <%-
-					include('./components/table-row.ejs') %> <% } %>
+					<% for( const post of posts ) { %> <%-
+					include('./components/table-row.ejs', {post}) %> <% } %>
 				</tbody>
 			</table>
 		</div>
