@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Document</title>
+		<title>Fortra - my profile</title>
+
+		<link
+			rel="stylesheet"
+			href="/public/index.css"
+		/>
+		<script
+			src="/public/index.js"
+			defer
+		></script>
+		<script src="https://cdn.tailwindcss.com"></script>
+	</head>
+	<body>
+		<%- include("./components/loggedHeader.ejs") %>
+		<div class="container gap-from-top bg-content">
+			<section>
+				<form
+					action="/api/post"
+					method="post"
+				>
+					<input
+						type="text"
+						name="title"
+						placeholder="Post title"
+						class="inline-block my-4 outline-none w-full rounded py-2 px-4"
+					/>
+					<textarea
+						name="content"
+						id="text-editor"
+					></textarea>
+					<button class="standart-button my-4">Submit</button>
+				</form>
+			</section>
+			<fieldset class="border border-gray-400 rounded p-4 bg-white">
+				<legend>Formos rezultatas</legend>
+				<div id="preview"></div>
+			</fieldset>
+		</div>
+
+		<script
+			type="application/javascript"
+			src="/tinymce/tinymce.min.js"
+		></script>
+		<script src="/public/tinymce-config.js"></script>
+	</body>
+</html>

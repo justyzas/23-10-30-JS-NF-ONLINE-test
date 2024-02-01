@@ -6,12 +6,15 @@ const schema = new mongoose.Schema({
 		required: true,
 		minLength: 5,
 		maxLength: 70,
+		unique: true,
 	},
 	email: {
 		type: String,
 		required: true,
 		minLength: 8,
 		maxLength: 120,
+		// Unique - nurodo, kad duomenu bazeje butu unikalus įrašas
+		unique: true,
 	},
 	password: {
 		type: String,

@@ -32,36 +32,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<%- include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %> <%-
-					include('./components/table-row.ejs') %>
+					<% for( const postas of posts ) { %> <%-
+					include('./components/table-row.ejs') %> <% } %>
 				</tbody>
 			</table>
 		</div>
