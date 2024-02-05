@@ -51,7 +51,7 @@ MONGO_CONNECTION=mongodb+srv://__DB_USER:__DB_PASSWORD@__DB_HOST/__DB_NAME
 ## Additional Information
 
 - **Contributing**: If you're interested in contributing to this project, please see our contributing guidelines.
-- **License**: This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- **License**: This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details.
 - **Acknowledgments**: Thanks to all the contributors and supporters of this project!
 
 We hope you find this project useful and look forward to seeing what you build with it!
