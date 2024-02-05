@@ -12,8 +12,9 @@
 
 **1. How to launch this project**
 
-[✔] 1.1 Add /images folder to /public folder
-[✔] 1.2 Add .env file to the root directory and configure it to reach your MongoDB database with username and password
+# [✔] 1.1 Create new `/images` folder in `/public` folder
+
+# [✔] 1.2 Add `.env` file to the root directory and configure it to reach your MongoDB database with username and password
 
 To do it propertly copy this code and paste it to your newly created .env file.
 
@@ -31,5 +32,6 @@ SESSIONS_SECRET=
 MONGO_CONNECTION=mongodb+srv://__DB_USER:__DB_PASSWORD@__DB_HOST/__DB_NAME
 ```
 
-[✔] 1.3 Run `npm install` command in root directory
-[✔] 1.4 Run `node .` or `node app.js`, or `nodemon` if you have installed one
+# [✔] 1.3 Run `npm install` command in root directory
+
+# [✔] 1.4 Run `node .` or `node app.js`, or `nodemon` if you have installed one
