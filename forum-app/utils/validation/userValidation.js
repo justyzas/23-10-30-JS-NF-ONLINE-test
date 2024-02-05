@@ -1,8 +1,8 @@
 function validate(user) {
 	const usernameValidation = validateUsername(user.username);
-	// {isValid: false, message: " bad username...."}
-	// {isValid: true, message: "success"}
 	if (!usernameValidation.isValid) return usernameValidation.message;
+	const passwordValidation = validatePassword(user.password);
+	if (!passwordValidation.isValid) return passwordValidation.message;
 
 	return "success";
 }
@@ -20,6 +20,40 @@ function validateUsername(username) {
 		};
 	}
 
+	return { isValid: true, message: "Success" };
+}
+
+function validatePassword(password) {
+	if (password.length < 8) {
+		return {
+			isValid: false,
+			message: "Password must be longer than 8 symbols",
+		};
+	}
+	if (password.length > 80) {
+		return {
+			isValid: false,
+			message: "Password must be shorter than 80 symbols",
+		};
+	}
+	if (!/[0-9]/.test(password)) {
+		return {
+			isValid: false,
+			message: "Password must contain at least one number",
+		};
+	}
+	if (!/[a-z]/.test(password)) {
+		return {
+			isValid: false,
+			message: "Password must contain at least one lowercase symbol",
+		};
+	}
+	if (!/[A-Z]/.test(password)) {
+		return {
+			isValid: false,
+			message: "Password must contain at least one uppercase symbol",
+		};
+	}
 	return { isValid: true, message: "Success" };
 }
 

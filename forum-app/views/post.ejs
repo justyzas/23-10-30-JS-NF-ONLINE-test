@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title><%=title%></title>
+		<link
+			rel="stylesheet"
+			href="public/grid.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="/public/index.css"
+		/>
+		<script
+			src="/public/index.js"
+			defer
+		></script>
+		<link
+			rel="stylesheet"
+			href="/public/profile.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+		/>
+		<script src="https://cdn.tailwindcss.com"></script>
+	</head>
+	<body>
+		<%- include("./components/header.ejs") %>
+		<div
+			class="container gap-from-top bg-semi-transparent flex flex-col gap-10"
+		>
+			<div class="bg-white p-4">
+				<h2 class="text-2xl text-center mb-4 bg-indigo-900 text-white p-4">
+					<%= post.title %>
+				</h2>
+				<div class="flex gap-10 justify-between">
+					<div
+						class="flex flex-col xl:min-w-[15%] lg:min-w[17%] md:min-w-[18%] sm:min-w-[30%] border border-gray-500 p-2 h-fit"
+					>
+						<img src="/public/images/img-1706683614673.jpg" />
+						<h3 class="font-bold"><%= user.username%></h3>
+						<div class="text-xs">
+							<p class="text-gray-500 italic">Posts: <span>14</span></p>
+							<p class="text-gray-500 italic">Comments: <span>14</span></p>
+							<p class="text-gray-500 italic">
+								Registered: <span>2024-01-31</span>
+							</p>
+						</div>
+						<div class="flex justify-between">
+							<div>
+								<i class="bi bi-hand-thumbs-up thumbs-up"></i> <span>12</span>
+							</div>
+							<div>
+								<i class="bi bi-hand-thumbs-down thumbs-down"></i>
+								<span>12</span>
+							</div>
+						</div>
+					</div>
+					<div class="w-full my-auto">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Repellendus dolorum esse libero vero quos atque corporis corrupti.
+						Sit recusandae quia eum! Ad quasi deserunt, temporibus sed expedita
+						delectus perspiciatis, molestias beatae itaque aspernatur aut quod
+						ut illum labore? Nemo ex molestias blanditiis quod. Accusamus eaque
+						aliquam harum perspiciatis corporis voluptate voluptatum libero
+						expedita alias eius sapiente cum impedit repudiandae quos non
+						consectetur, ullam blanditiis iusto in ducimus. Fuga nulla
+						asperiores eius? Dolore, rerum dolorem. At dolorum eos mollitia ipsa
+						neque doloremque saepe sapiente itaque quibusdam? Officia nobis
+						quasi quod adipisci harum est minima eius ex veritatis optio.
+						Assumenda, numquam amet.
+					</div>
+				</div>
+			</div>
+
+			<section>
+				<form
+					action="/api/comment"
+					method="post"
+				>
+					<textarea
+						name="content"
+						id="text-editor"
+					></textarea>
+					<button class="standart-button bg-green my-4">Create post</button>
+				</form>
+			</section>
+			<!-- Contento peržiūra -->
+			<fieldset
+				id="preview"
+				class="border border-gray-400 rounded p-4 bg-white"
+			></fieldset>
+		</div>
+		<script
+			type="application/javascript"
+			src="/tinymce/tinymce.min.js"
+		></script>
+		<script src="/public/tinymce-config.js"></script>
+	</body>
+</html>

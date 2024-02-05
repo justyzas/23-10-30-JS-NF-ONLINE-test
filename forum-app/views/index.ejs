@@ -21,7 +21,13 @@
 		<%- include('./components/header.ejs') %>
 		<!-- CONTENT -->
 		<div class="container gap-from-top">
-			<%- include('./components/infoMessage.ejs') %>
+			<%- include('./components/infoMessage.ejs') %> <%-
+			include('./components/errorMessage.ejs') %>
+			<a
+				href="/new-post"
+				class="standart-button my-3 inline-block"
+				>Create new post</a
+			>
 			<table>
 				<thead>
 					<tr>

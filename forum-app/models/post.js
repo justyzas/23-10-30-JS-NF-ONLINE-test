@@ -32,6 +32,10 @@ const schema = new mongoose.Schema({
 		ref: "user",
 		required: true,
 	},
+	author: {
+		type: Object,
+		ref: "user",
+	},
 	likesCount: {
 		type: Number,
 		default: 0,
