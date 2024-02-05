@@ -17,6 +17,7 @@ header {
 	align-items: end;
 	position: sticky;
 	top: 0px;
+	z-index: 3;
 }
 header nav {
 	width: 50%;
@@ -249,7 +250,7 @@ tbody tr {
 	cursor: pointer;
 }
 .bg-content {
-	background-color: rgb(245, 245, 245);
+	background-color: rgba(245, 245, 245, 0.702);
 }
 
 .card {
