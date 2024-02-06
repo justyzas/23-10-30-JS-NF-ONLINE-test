@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const PostModel = require("../models/post");
-const upload = require("../config/multer").upload;
-const validate = require("../utils/validation/userValidation");
 
 router.get("/", async (req, res) => {
 	//Visu irasu gavimas
@@ -26,7 +24,7 @@ router.delete("/:id", async (req, res) => {
 	}
 
 	//Jei autorius yra prisijunges vartotojas arba prisijunges vartotojas yra admin, tada leidžiame ištrinti įrašą
-	if (post.authorId === req.session.user.id || req.session.user.admin) {
+	if (post.author === req.session.user.id || req.session.user.admin) {
 		await PostModel.findOneAndDelete({ _id: req.params.id });
 		return res.status(200).json({ message: "Įrašas sėkmingai buvo ištrintas" });
 	}
@@ -39,7 +37,7 @@ router.delete("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
 	const { title, content } = req.body;
-	const authorId = req.session.user.id;
+	const author = req.session.user.id;
 
 	// Validacija
 
@@ -47,7 +45,7 @@ router.post("/", async (req, res) => {
 	const newPost = new PostModel({
 		title,
 		content,
-		authorId,
+		author,
 	});
 
 	await newPost.save();

@@ -20,31 +20,23 @@ const schema = new mongoose.Schema({
 	viewsCount: {
 		type: Number,
 		default: 0,
-		required: true,
 	},
 	commentsCount: {
 		type: Number,
 		default: 0,
-		required: true,
 	},
-	authorId: {
+	author: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "user",
 		required: true,
 	},
-	author: {
-		type: Object,
-		ref: "user",
-	},
 	likesCount: {
 		type: Number,
 		default: 0,
-		required: true,
 	},
 	dislikesCount: {
 		type: Number,
 		default: 0,
-		required: true,
 	},
 	creationDate: {
 		type: Number,
@@ -52,12 +44,6 @@ const schema = new mongoose.Schema({
 	},
 	tags: {
 		type: Array,
-		required: true,
-		default: [],
-	},
-	images: {
-		type: Array,
-		required: true,
 		default: [],
 	},
 });

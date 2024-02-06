@@ -48,12 +48,10 @@ const schema = new mongoose.Schema({
 	admin: {
 		type: Boolean,
 		default: false,
-		required: true,
 	},
 	registrationDate: {
 		type: Date,
 		default: new Date(),
-		required: true,
 	},
 });
 

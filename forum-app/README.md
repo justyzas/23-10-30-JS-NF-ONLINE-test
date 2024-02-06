@@ -5,7 +5,9 @@
 </h1>
 <br/>
 <div align="center">
-  <img src="https://img.shields.io/badge/⚙%20Routers%20count-%2048%20Best%20Practices-blue.svg" alt="48 items"/> <img id="last-update-badge" src="https://img.shields.io/badge/%F0%9F%93%85%20Last%20update%20-%20February%2005%2C%202024-green.svg" alt="Last update: July 19, 2023" /> <img src="https://img.shields.io/badge/ %E2%9C%94%20Updated%20For%20Version%20-%20Node%2020.10.0-brightgreen.svg" alt="Updated for Node 20.10.0"/>
+  <img src="https://img.shields.io/badge/⚙%20Routers%20count-%2048%20Best%20Practices-blue.svg" alt="48 items"/> 
+  <img id="last-update-badge" src="https://img.shields.io/badge/%F0%9F%93%85%20Last%20update%20-%20February%2005%2C%202024-green.svg" alt="Last update: July 19, 2023" /> 
+  <img src="https://img.shields.io/badge/ %E2%9C%94%20Updated%20For%20Version%20-%20Node%2020.10.0-brightgreen.svg" alt="Updated for Node 20.10.0"/>
 </div>
 
 ## Welcome!

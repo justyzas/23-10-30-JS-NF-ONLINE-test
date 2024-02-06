@@ -9,7 +9,7 @@
 		<title><%=title%></title>
 		<link
 			rel="stylesheet"
-			href="public/grid.css"
+			href="/public/grid.css"
 		/>
 		<link
 			rel="stylesheet"
@@ -33,47 +33,42 @@
 		<%- include("./components/header.ejs") %>
 		<div class="container gap-from-top bg-content flex flex-col gap-10">
 			<div class="bg-white p-4">
-				<h2 class="text-2xl text-center mb-4 bg-indigo-900 text-white p-4"></h2>
+				<h2 class="text-2xl text-center mb-4 bg-indigo-900 text-white p-4">
+					<%=post.title%>
+				</h2>
 				<div class="flex gap-10 justify-between">
 					<div
 						class="flex flex-col xl:min-w-[15%] lg:min-w[17%] md:min-w-[18%] sm:min-w-[30%] border border-gray-500 p-2 h-fit"
 					>
 						<img src="/public/images/img-1706683614673.jpg" />
-						<h3 class="font-bold"></h3>
+						<h3 class="font-bold"><%=user.username%></h3>
 						<div class="text-xs">
-							<p class="text-gray-500 italic">Posts: <span>14</span></p>
-							<p class="text-gray-500 italic">Comments: <span>14</span></p>
 							<p class="text-gray-500 italic">
-								Registered: <span>2024-01-31</span>
+								Posts: <span><%=user.postsCount%></span>
+							</p>
+							<p class="text-gray-500 italic">
+								Comments: <span><%=user.commentsCount%></span>
+							</p>
+							<p class="text-gray-500 italic">
+								Registered:
+								<span><%=user.registrationDate.toDateString()%></span>
 							</p>
 						</div>
 						<div class="flex justify-between">
 							<div>
-								<i class="bi bi-hand-thumbs-up thumbs-up"></i> <span>12</span>
+								<i class="bi bi-hand-thumbs-up thumbs-up"></i>
+								<span><%=user.likes%></span>
 							</div>
 							<div>
 								<i class="bi bi-hand-thumbs-down thumbs-down"></i>
-								<span>12</span>
+								<span><%=user.dislikes%></span>
 							</div>
 						</div>
 					</div>
-					<div class="w-full my-auto">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Repellendus dolorum esse libero vero quos atque corporis corrupti.
-						Sit recusandae quia eum! Ad quasi deserunt, temporibus sed expedita
-						delectus perspiciatis, molestias beatae itaque aspernatur aut quod
-						ut illum labore? Nemo ex molestias blanditiis quod. Accusamus eaque
-						aliquam harum perspiciatis corporis voluptate voluptatum libero
-						expedita alias eius sapiente cum impedit repudiandae quos non
-						consectetur, ullam blanditiis iusto in ducimus. Fuga nulla
-						asperiores eius? Dolore, rerum dolorem. At dolorum eos mollitia ipsa
-						neque doloremque saepe sapiente itaque quibusdam? Officia nobis
-						quasi quod adipisci harum est minima eius ex veritatis optio.
-						Assumenda, numquam amet.
-					</div>
+					<div class="w-full my-auto"><%- post.content %></div>
 				</div>
 			</div>
-
+			<%if(loggedIn){%>
 			<section>
 				<form
 					action="/api/comment"
@@ -83,9 +78,19 @@
 						name="content"
 						id="text-editor"
 					></textarea>
-					<button class="standart-button bg-green my-4">Create post</button>
+					<button class="standart-button bg-green my-4">Publish comment</button>
 				</form>
 			</section>
+			<%}else{%>
+			<div class="bg-yellow-500 text-white">
+				You need to
+				<a
+					href="/login"
+					class="underline"
+					>log in</a
+				>, to post comments
+			</div>
+			<%}%>
 			<!-- Contento peržiūra -->
 			<fieldset
 				id="preview"
@@ -97,5 +102,6 @@
 			src="/tinymce/tinymce.min.js"
 		></script>
 		<script src="/public/tinymce-config.js"></script>
+		<script src="/public/profile.js"></script>
 	</body>
 </html>

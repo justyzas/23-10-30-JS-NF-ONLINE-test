@@ -4,6 +4,7 @@ const MongoStore = require("connect-mongo");
 const pagesRouter = require("../routes/pages");
 const userRouter = require("../routes/user-router");
 const postRouter = require("../routes/posts-router");
+const commentRouter = require("../routes/comments-router");
 const bodyParser = require("body-parser");
 
 function config(app) {
@@ -41,6 +42,7 @@ function config(app) {
 
 	app.use("/api/user", userRouter);
 	app.use("/api/post", postRouter);
+	app.use("/api/comment", commentRouter);
 }
 
 module.exports = { config };
