@@ -26,11 +26,11 @@
 					<a
 						href=""
 						class="author-outline"
-						>Justelio19</a
+						><%= post.lastCommentBy %></a
 					>
 				</span>
 			</div>
-			<div class="date">Tue Mar 21, 2017 08:50</div>
+			<div class="date"><%= new Date(post.lastComment).toDateString() %></div>
 		</div>
 	</td>
 </tr>

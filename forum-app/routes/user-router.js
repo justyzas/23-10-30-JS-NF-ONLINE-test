@@ -59,7 +59,7 @@ router.post("/register", upload.single("img"), async (req, res) => {
 			id: newUser._id,
 			loggedIn: true,
 		};
-		res.redirect("/?message=registracija buvo sėkminga");
+		res.redirect("/?message=Registracija buvo sėkminga");
 	} catch (err) {
 		res.redirect("/register?error=Registracija nepavyko dėl blogų duomenų");
 	}
@@ -105,11 +105,9 @@ router.get("/logout", async (req, res) => {
 	} else {
 		req.session.destroy((err) => {
 			if (err) {
-				console.log("klaida ištrinant sesiją");
 				console.error(err);
 				return res.redirect("/");
 			} else {
-				console.log("sėkmingas atjungimo atvejis");
 				res.clearCookie("connect.sid");
 				return res.redirect("/login");
 			}

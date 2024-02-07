@@ -46,6 +46,13 @@ const schema = new mongoose.Schema({
 		type: Array,
 		default: [],
 	},
+	lastComment: {
+		type: Date,
+	},
+	lastCommentBy: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "user",
+	},
 });
 
 const Model = mongoose.model("post", schema);
