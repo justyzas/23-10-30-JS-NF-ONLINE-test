@@ -31,6 +31,7 @@
 	</head>
 	<body>
 		<%- include("./components/loggedHeader.ejs") %>
+
 		<div class="container gap-from-top bg-content">
 			<div class="dashboard">
 				<div class="profile-photo-large">
@@ -66,17 +67,22 @@
 					<div class="gap-top"></div>
 					<span class="data-row">
 						<span class="col-2">
-							<i class="bi bi-hand-thumbs-up thumbs-up"></i>
-							<span><%=likes%></span>
+							<i class="bi bi-hand-thumbs-up thumbs-up profile-likes"></i>
+							<span class="profile-likes"><%=likes%></span>
 						</span>
 						<span class="col-2">
-							<i class="bi bi-hand-thumbs-down thumbs-down"></i>
-							<span><%=dislikes%></span>
+							<i
+								class="bi bi-hand-thumbs-down thumbs-down profile-dislikes"
+							></i>
+							<span class="profile-dislikes"><%=dislikes%></span>
 						</span>
 					</span>
 				</div>
 			</div>
 		</div>
+		<script>
+			let id = "<%= id%>";
+		</script>
 		<script src="/public/profile.js"></script>
 	</body>
 </html>

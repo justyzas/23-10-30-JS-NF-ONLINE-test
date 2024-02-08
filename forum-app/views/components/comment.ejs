@@ -1,3 +1,21 @@
-<div class="comment">
-	<div class="bg-white p-4"><%- comment.content%></div>
+<div class="comment flex bg-white items-center">
+	<div class="p-2">
+		<a
+			href="/profile/<%=comment.author._id%>"
+			class="text-blue-600 hover:text-blue-900 block"
+			><%= comment.author.username%></a
+		>
+		<div><%= new Date(comment.postDate).toDateString() %></div>
+	</div>
+	<div class="p-4 w-[90%]"><%- comment.content%></div>
+	<span class="data-row">
+		<span class="w-[5%] block mr-4">
+			<i class="bi bi-hand-thumbs-up thumbs-up"></i>
+			<span><%= comment.likesCount%></span>
+		</span>
+		<span class="w-[5%] block">
+			<i class="bi bi-hand-thumbs-down thumbs-down"></i>
+			<span><%= comment.dislikesCount%></span>
+		</span>
+	</span>
 </div>

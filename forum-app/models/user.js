@@ -53,6 +53,8 @@ const schema = new mongoose.Schema({
 		type: Date,
 		default: new Date(),
 	},
+	profileLikedUsers: [String],
+	profileDislikedUsers: [String],
 });
 
 const model = mongoose.model("user", schema);
