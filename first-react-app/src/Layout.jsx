@@ -1,7 +1,8 @@
+import App from "./components/App/App";
 function Layout() {
 	return (
 		<>
-			<div>Mama</div>
+			<App></App>
 			<div>Mama</div>
 		</>
 	);
