@@ -8,11 +8,47 @@ body {
 	overflow: hidden;
 }
 
+.tooltip {
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: 120px;
+	background-color: rgb(62, 59, 59);
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 1;
+	width: 120px;
+	bottom: 100%;
+	left: 50%;
+	margin-left: -60px;
+}
+
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
+
+@layer base {
+	.linkInHeader {
+		@apply text-green-500;
+	}
+}
 @layer components {
 	.linkInHeader {
-		@apply flex items-center text-slate-300 hover:text-white transition-colors duration-[500ms];
+		/* @apply flex items-center text-slate-300 hover:text-white transition-colors duration-[500ms]; */
+		@apply text-yellow-500;
 	}
-	li {
+}
+@layer utilities {
+	.linkInHeader {
 		@apply text-red-500;
 	}
 }
