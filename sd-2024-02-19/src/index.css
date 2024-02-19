@@ -1,0 +1,19 @@
+.box {
+	width: 50px;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: red;
+	color: white;
+}
+
+.box-container {
+	margin-top: 2rem;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	background-color: beige;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+}
