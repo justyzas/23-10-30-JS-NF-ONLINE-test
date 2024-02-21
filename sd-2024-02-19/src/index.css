@@ -17,3 +17,7 @@
 	flex-wrap: wrap;
 	gap: 0.75rem;
 }
+
+.weightInput {
+	min-width: 100px;
+}

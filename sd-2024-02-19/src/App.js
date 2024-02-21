@@ -5,6 +5,10 @@ import Base3 from "./components/Base3";
 import Base4 from "./components/Base4";
 import Base5 from "./components/Base5";
 import Form1 from "./components/Form1";
+import Form2 from "./components/Form2";
+import Form3 from "./components/Form3";
+import Form4 from "./components/Form4";
+import UseEffect from "./components/UseEffect";
 
 function App() {
 	const obj = {
@@ -45,6 +49,11 @@ function App() {
 			/>
 			<Form1 />
 			<Form1 />
+			<Form2 />
+			<Form3 />
+			<br />
+			<Form4 />
+			<UseEffect />
 		</div>
 	);
 }
