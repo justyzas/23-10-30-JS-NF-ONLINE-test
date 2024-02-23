@@ -1,0 +1,92 @@
+[
+	{
+		"id": 1,
+		"title": "SCOOT MX-T",
+		"hourlyPrice": 4.45,
+		"ride": 61.12,
+		"registrationCode": "VNQ88",
+		"lastUseTime": 1708355051000,
+		"isBusy": true
+	},
+	{
+		"id": 2,
+		"title": "SKY SUPER",
+		"hourlyPrice": 6.46,
+		"ride": 79.38,
+		"registrationCode": "SSJ91",
+		"lastUseTime": 1706446523000,
+		"isBusy": false
+	},
+	{
+		"id": 3,
+		"title": "SKY SUPER",
+		"hourlyPrice": 5.22,
+		"ride": 93.68,
+		"registrationCode": "LZU79",
+		"lastUseTime": 1708248007000,
+		"isBusy": true
+	},
+	{
+		"id": 4,
+		"title": "SCOOT MX-T",
+		"hourlyPrice": 3.51,
+		"ride": 84.15,
+		"registrationCode": "MQZ34",
+		"lastUseTime": 1708461442000,
+		"isBusy": false
+	},
+	{
+		"id": 5,
+		"title": "TEKIN 87",
+		"hourlyPrice": 7.0,
+		"ride": 94.92,
+		"registrationCode": "EKA65",
+		"lastUseTime": 1702450306000,
+		"isBusy": true
+	},
+	{
+		"id": 6,
+		"title": "SCOOT MX-T",
+		"hourlyPrice": 8.88,
+		"ride": 73.76,
+		"registrationCode": "SAV30",
+		"lastUseTime": 1704447798000,
+		"isBusy": false
+	},
+	{
+		"id": 7,
+		"title": "TEKIN 87",
+		"hourlyPrice": 8.18,
+		"ride": 51.36,
+		"registrationCode": "EKY14",
+		"lastUseTime": 1704445633000,
+		"isBusy": true
+	},
+	{
+		"id": 8,
+		"title": "TEKIN 87",
+		"hourlyPrice": 4.17,
+		"ride": 96.21,
+		"registrationCode": "AED41",
+		"lastUseTime": 1707454957000,
+		"isBusy": false
+	},
+	{
+		"id": 9,
+		"title": "Krex-io",
+		"hourlyPrice": 3.57,
+		"ride": 92.64,
+		"registrationCode": "WZZ44",
+		"lastUseTime": 1709452503000,
+		"isBusy": true
+	},
+	{
+		"id": 10,
+		"title": "Krex-io",
+		"hourlyPrice": 9.38,
+		"ride": 56.5,
+		"registrationCode": "SEI22",
+		"lastUseTime": 1703446557000,
+		"isBusy": false
+	}
+]
