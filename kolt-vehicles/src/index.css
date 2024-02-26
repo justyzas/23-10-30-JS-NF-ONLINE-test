@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .buttonas {
+.buttonas {
 	opacity: 70%;
 }
 .buttonas:hover {
 	opacity: 100%;
-} */
+}

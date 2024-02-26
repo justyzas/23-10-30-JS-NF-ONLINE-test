@@ -51,15 +51,21 @@ function Scooter({ scooter }) {
 }
 
 export default function Middle() {
-	const [scooter, setScooter] = useState([]);
+	const [scooter, setScooter] = useState(getAllScooters);
 	useEffect(() => {
-		fetch("/paspirtukai.json")
-			.then((resp) => resp.json())
-			.then((data) => {
-				console.log(data);
-				setScooter(data);
-			});
+		// fetch("/paspirtukai.json")
+		// 	.then((resp) => resp.json())
+		// 	.then((data) => {
+		// 		console.log(data);
+		// 		setScooter(data);
+		// 	});
 	}, []);
+
+	function getAllScooters() {
+		const data = JSON.parse(localStorage.getItem("scooters")) || [];
+		if (data.length === 0) localStorage.setItem("scooters", "[]");
+		return data;
+	}
 
 	return (
 		<div className="container mx-auto bg-slate-100 min-h-[400px] flex flex-col gap-4 p-4">
