@@ -1,12 +1,7 @@
 import { useState } from "react";
 import Button from "./Button";
 
-export default function AddScooterForm() {
-	// const [scooterName, setScooterName] = useState("");
-	// const [ride, setRide] = useState(0);
-	// const [nationalNumber, setNationalNumber] = useState("");
-	// const [pricing, setPricing] = useState(0);
-
+export default function AddScooterForm({ notifyScooterAddition }) {
 	const [scooter, setScooter] = useState({
 		title: "",
 		ride: 0,
@@ -30,13 +25,17 @@ export default function AddScooterForm() {
 	};
 	const handlePricingChange = (e) => {
 		const newValue = +e.target.value;
-		if (newValue < 0) alert("Kainos reikšmė negali būti mažesnė nei nulis");
+		if (newValue < 0) alert("Kainos reikšmė negali būti mažesnė nei 0");
+		else if (newValue > 100)
+			alert("Kainos reikšmė negali būti didesnė nei 100");
 		else setScooter({ ...scooter, hourlyPrice: newValue });
 	};
 	const saveNewScooter = () => {
 		if (!/[A-Z]{3}[\d]{2}/.test(scooter.registrationCode)) {
 			alert("Blogas registracijos kodas");
+			return;
 		}
+		notifyScooterAddition(scooter);
 	};
 	return (
 		<div className="flex flex-wrap gap-4 w-4/5 justify-center mx-auto">
@@ -63,7 +62,7 @@ export default function AddScooterForm() {
 			/>
 			<input
 				type="number"
-				value={scooter.hourlyPrice}
+				value={scooter.hourlyPrice === 0 ? "" : scooter.hourlyPrice.toString()}
 				onChange={handlePricingChange}
 				className="rounded px-2 py-1 outline-sky-200 outline-2 min-w-[200px]"
 				placeholder="Kaina/val"

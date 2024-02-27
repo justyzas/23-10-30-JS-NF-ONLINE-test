@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import * as PropTypes from "prop-types";
 import { FaPencil } from "react-icons/fa6";
 import { FaTrashAlt } from "react-icons/fa";
 
@@ -6,10 +7,13 @@ function Status({ status }) {
 	return (
 		<div
 			className="w-[20px] h-[20px] rounded-full inline-block"
-			style={{ background: status ? "lime" : "red" }}
+			style={{ background: status ? "red" : "lime" }}
 		></div>
 	);
 }
+Status.propTypes = {
+	status: PropTypes.bool.isRequired,
+};
 
 function Scooter({ scooter }) {
 	return (
@@ -31,13 +35,17 @@ function Scooter({ scooter }) {
 			</div>
 			<div>
 				<h3 className="font-bold">Paskutinio naudojimo data</h3>
-				<div>{new Date(scooter.lastUseTime).toLocaleDateString("lt")}</div>
+				<div>
+					{scooter.lastUseTime === 1
+						? "Niekada nepanaudotas"
+						: new Date(scooter.lastUseTime).toLocaleDateString("lt")}
+				</div>
 			</div>
 			<div>
 				<h3 className="font-bold">Statusas</h3>
 				<div>
 					<Status status={scooter.isBusy} />{" "}
-					{scooter.isBusy ? "(Laisvas)" : "(Užimtas)"}
+					{scooter.isBusy ? "(Užimtas)" : "(Laisvas)"}
 				</div>
 			</div>
 
@@ -49,17 +57,36 @@ function Scooter({ scooter }) {
 		</div>
 	);
 }
+Scooter.propTypes = {
+	scooter: PropTypes.object,
+};
 
-export default function Middle() {
+export default function Middle({ newScooter }) {
 	const [scooter, setScooter] = useState(getAllScooters);
 	useEffect(() => {
-		// fetch("/paspirtukai.json")
-		// 	.then((resp) => resp.json())
-		// 	.then((data) => {
-		// 		console.log(data);
-		// 		setScooter(data);
-		// 	});
-	}, []);
+		console.log("Komponentas uzsimontavo arba pasikeite newScooter reiksme");
+		if (newScooter === null) return;
+		if (newScooter) {
+			// console.log("Naujas scooteris buvo pridetas" + " Naujas scooteris: ");
+			const newId = +localStorage.getItem("currentId");
+			if (!newId) localStorage.setItem("currentId", "1");
+
+			const newScooterAddition = {
+				...newScooter,
+				id: newId || 1,
+				lastUseTime: 1,
+				isBusy: false,
+			};
+			setScooter([...scooter, newScooterAddition]);
+			const nextId = newId + 1 === 1 ? 2 : newId + 1;
+			localStorage.setItem("currentId", nextId);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [newScooter]);
+
+	useEffect(() => {
+		localStorage.setItem("scooters", JSON.stringify(scooter));
+	}, [scooter]);
 
 	function getAllScooters() {
 		const data = JSON.parse(localStorage.getItem("scooters")) || [];
@@ -78,3 +105,6 @@ export default function Middle() {
 		</div>
 	);
 }
+Middle.propTypes = {
+	newScooter: PropTypes.object,
+};
