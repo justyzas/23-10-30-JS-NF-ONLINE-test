@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "./Button";
+import * as PropTypes from "prop-types";
 
 export default function AddScooterForm({ notifyScooterAddition }) {
 	const [scooter, setScooter] = useState({
@@ -77,3 +78,6 @@ export default function AddScooterForm({ notifyScooterAddition }) {
 		</div>
 	);
 }
+AddScooterForm.propTypes = {
+	notifyScooterAddition: PropTypes.func,
+};

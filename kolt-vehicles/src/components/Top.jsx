@@ -1,5 +1,6 @@
 import AddScooterForm from "./AddScooter";
 import Button from "./Button";
+import * as PropTypes from "prop-types";
 
 export default function Top({ notifyScooterAddition }) {
 	return (
@@ -22,3 +23,6 @@ export default function Top({ notifyScooterAddition }) {
 		</div>
 	);
 }
+Top.propTypes = {
+	notifyScooterAddition: PropTypes.func,
+};
