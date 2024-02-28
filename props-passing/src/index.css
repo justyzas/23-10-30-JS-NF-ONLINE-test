@@ -1,0 +1,18 @@
+.bg-yellow {
+	background-color: rgb(255, 255, 73);
+	height: 600px;
+}
+
+.bg-orange {
+	background-color: orangered;
+	height: 150px;
+}
+
+.bg-lime {
+	background-color: lime;
+	height: 150px;
+}
+
+.hidden {
+	visibility: hidden;
+}

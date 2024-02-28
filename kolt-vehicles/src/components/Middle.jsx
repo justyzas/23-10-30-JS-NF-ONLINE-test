@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import * as PropTypes from "prop-types";
 import { FaPencil } from "react-icons/fa6";
 import { FaTrashAlt } from "react-icons/fa";
+import Button from "./Button";
 
 function Status({ status }) {
 	return (
@@ -63,6 +64,7 @@ Scooter.propTypes = {
 
 export default function Middle({ newScooter }) {
 	const [scooter, setScooter] = useState(getAllScooters);
+	const [showFreeScooters, setShowFreeScooters] = useState(null);
 	useEffect(() => {
 		console.log("Komponentas uzsimontavo arba pasikeite newScooter reiksme");
 		if (newScooter === null) return;
@@ -94,9 +96,64 @@ export default function Middle({ newScooter }) {
 		return data;
 	}
 
+	const filteredScooters = useMemo(
+		() =>
+			scooter.filter((val) => {
+				console.log("Filtruoju");
+				if (showFreeScooters === null) {
+					return true;
+				} else if (showFreeScooters) {
+					return !val.isBusy;
+				} else {
+					return val.isBusy;
+				}
+			}),
+		[showFreeScooters, scooter]
+	);
+
+	// laisvi => uzimti => visi =>laisvi...
+	// function getColor() {
+	// 	return showFreeScooters
+	// 		? "red"
+	// 		: showFreeScooters === false
+	// 		? "blue"
+	// 		: "green";
+	// }
+	// function getButtonText() {
+	// 	return showFreeScooters
+	// 		? "Rodyti užimtus"
+	// 		: showFreeScooters === false
+	// 		? "Rodyti visus"
+	// 		: "Rodyti laisvus";
+	// }
 	return (
 		<div className="container mx-auto bg-slate-100 min-h-[400px] flex flex-col gap-4 p-4">
-			{scooter.map((s) => (
+			<div className="flex justify-center mt-28 gap-4">
+				{/* <Button
+					text={getButtonText()}
+					color={getColor()}
+					onClick={() => {
+						setShowFreeScooters((prevValue) => {
+							return prevValue ? false : prevValue === false ? null : true;
+						});
+					}}
+				/> */}
+				<select
+					onChange={(e) => {
+						if (e.target.value === "null") setShowFreeScooters(null);
+						else if (e.target.value === "true") {
+							setShowFreeScooters(true);
+						} else {
+							setShowFreeScooters(false);
+						}
+					}}
+				>
+					<option value="null">Rodyti visus</option>
+					<option value="true">Rodyti laisvus</option>
+					<option value="false">Rodyti užimtus</option>
+				</select>
+			</div>
+			{filteredScooters.map((s) => (
 				<Scooter
 					key={s.id}
 					scooter={s}

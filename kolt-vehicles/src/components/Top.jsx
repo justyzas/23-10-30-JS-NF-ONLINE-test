@@ -1,5 +1,5 @@
 import AddScooterForm from "./AddScooter";
-import Button from "./Button";
+
 import * as PropTypes from "prop-types";
 
 export default function Top({ notifyScooterAddition }) {
@@ -9,17 +9,6 @@ export default function Top({ notifyScooterAddition }) {
 				Paspirtuko pridėjimas
 			</h2>
 			<AddScooterForm notifyScooterAddition={notifyScooterAddition} />
-			<div className="flex justify-center mt-28 gap-4">
-				<Button
-					text="Rodyti laisvus"
-					color="green"
-					hoverColor="blue"
-				/>
-				<Button
-					color="red"
-					text="Rodyti užimtus"
-				/>
-			</div>
 		</div>
 	);
 }
