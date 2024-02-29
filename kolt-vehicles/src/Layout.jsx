@@ -9,10 +9,16 @@ export default function Layout() {
 	function notifyScooterAddition(scooter) {
 		setNewScooter(scooter);
 	}
+	function resetNewScooter() {
+		setNewScooter(null);
+	}
 	return (
 		<div>
 			<Top notifyScooterAddition={notifyScooterAddition} />
-			<Middle newScooter={newScooter} />
+			<Middle
+				newScooter={newScooter}
+				resetInput={resetNewScooter}
+			/>
 			<Bottom />
 		</div>
 	);
