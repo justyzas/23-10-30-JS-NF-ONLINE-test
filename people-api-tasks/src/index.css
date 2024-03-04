@@ -1,0 +1,13 @@
+.person {
+	padding: 1rem;
+	border-radius: 3px;
+	border: 1px solid gray;
+	width: fit-content;
+}
+.person-list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 2rem;
+	max-width: 1200px;
+	margin: 0 auto;
+}
