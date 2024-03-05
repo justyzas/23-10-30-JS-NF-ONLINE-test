@@ -5,28 +5,46 @@ import { callPeopleApi } from "./api";
 function App() {
 	const [peopleList, setPeopleList] = useState([]);
 	const [selectedGender, setSelectedGender] = useState("female");
+	const [selectedCountry, setSelectedCountry] = useState("All");
 	const [sortByName, setSortByName] = useState("original");
+	const [countryList, setCountryList] = useState([]);
+	const [savedPeople, setSavedPeople] = useState(() =>
+		JSON.parse(localStorage.getItem("people"))
+	);
 
 	useEffect(() => {
 		callPeopleApi((data) => {
 			setPeopleList(data.results);
+			const allCountriesRepeating = data.results.map((person) => {
+				return person.location.country;
+			});
+			const originalCountriesSet = new Set(allCountriesRepeating);
+			console.log(originalCountriesSet);
+			const countries = [...originalCountriesSet];
+			setCountryList(["All", ...countries]);
 		});
 	}, []);
+
 	const filteredPeopleList = useMemo(() => {
+		console.log(peopleList);
 		return peopleList
-			.filter((personObj) => {
+			.filter((personObject) => {
 				if (selectedGender === "any") return true;
-				else return personObj.gender === selectedGender;
+				else return personObject.gender === selectedGender;
 			})
-			.sort((personObj1, personObject2) => {
-				const comparisonValue = personObj1.name.first.localeCompare(
+			.filter((personObject) => {
+				if (selectedCountry === "All") return true;
+				return selectedCountry === personObject.location.country;
+			})
+			.sort((personObject1, personObject2) => {
+				const comparisonValue = personObject1.name.first.localeCompare(
 					personObject2.name.first
 				);
 				if (sortByName === "asc") return comparisonValue;
 				else if (sortByName === "desc") return comparisonValue * -1;
 				else return 0;
 			});
-	}, [peopleList, selectedGender, sortByName]);
+	}, [peopleList, selectedGender, sortByName, selectedCountry]);
 	return (
 		<div>
 			<h1>Visi žmonės</h1>
@@ -50,9 +68,24 @@ function App() {
 				<option value="desc">Descending name</option>
 				<option value="original">Original order</option>
 			</select>
-			<PeopleList people={filteredPeopleList} />
+			<select
+				value={selectedCountry}
+				onChange={(e) => {
+					setSelectedCountry(e.target.value);
+				}}
+			>
+				{countryList.map((country, index) => (
+					<option key={"countryOption-" + index}>{country}</option>
+				))}
+			</select>
+			<PeopleList
+				people={filteredPeopleList}
+				saveNewPerson={(newPerson) =>
+					setSavedPeople((prev) => [...prev, newPerson])
+				}
+			/>
 			<h1>Įsiminti žmonės</h1>
-			<PeopleList people={peopleList} />
+			<PeopleList people={savedPeople} />
 		</div>
 	);
 }
