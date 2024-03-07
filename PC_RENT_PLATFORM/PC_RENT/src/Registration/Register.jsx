@@ -8,6 +8,7 @@ export default function RegistrationWindow() {
 		birthDate: "",
 		phone: "",
 	});
+	// const [addressDetails, setAddressDetails] = useState({});
 
 	function setFieldInUserDetails(e, field) {
 		const newObject = { ...userDetails };
@@ -16,8 +17,8 @@ export default function RegistrationWindow() {
 	}
 
 	return (
-		<div className="bg-slate-300 w-[100vw] h-[100vh] flex justify-center items-center">
-			<div className="w-4/5 min-h-[400px] max-w-[1000px] bg-white p-4 rounded-md">
+		<div className="bg-slate-300 w-[100vw] h-[100vh] flex justify-center items-center auth-bg">
+			<div className="w-4/5 min-h-[400px] max-w-[1000px] bg-blue-200 bg-opacity-80 p-4 rounded-md">
 				<h1 className="text-xl font-bold">Registration</h1>
 				<hr className="mb-4" />
 

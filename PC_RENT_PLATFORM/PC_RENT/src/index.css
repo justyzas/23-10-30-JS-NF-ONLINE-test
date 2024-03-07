@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.not-found-bg {
+	background-image: url(./assets/not-found-bg.jpg);
+	background-size: cover;
+	background-position: bottom;
+}
+.auth-bg {
+	background-image: url(./assets/registration-bg.jpg);
+	background-size: cover;
+}

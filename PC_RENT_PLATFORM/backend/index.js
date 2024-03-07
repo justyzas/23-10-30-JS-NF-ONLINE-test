@@ -1,44 +1,11 @@
-const mysql = require("mysql2");
+const express = require("express");
+const app = express();
+const mainRouter = require("./MainRouter");
 
-const connection = mysql.createConnection({
-	host: "localhost",
-	user: "root",
-	password: "1234",
-	database: "pc_rent_platform",
+app.use(express.json());
+
+app.use("/api", mainRouter);
+
+app.listen(3000, () => {
+	console.log("Serveris paleistas, jo adresas: http://localhost:3000/");
 });
-
-connection.connect((err) => {
-	if (err) console.log(err);
-	else {
-		console.log("Connected to database!");
-		executeStatement();
-	}
-});
-
-async function executeStatement() {
-	// READ
-	// const [result] = await connection
-	// 	.promise()
-	// 	.execute("SELECT * FROM `addresses` WHERE `id` = 1");
-	// console.log(result);
-
-	// CREATE
-
-	// const result = await connection.promise().execute(
-	// 	`INSERT INTO users (username, pass_encoded, email, birth_date, phone, address_id)
-	//         VALUES("Justinas", "HSDGHASKSKthtrsdhz6dfh846erhERH", "krutikovasjustinas@gmail.com", "1999-11-11", "+3706584069", 1)`
-	// );
-	// console.log(result);
-
-	// UPDATE
-	// const result = await connection.promise().execute(`
-	// UPDATE users SET username = 'Justelio20', email = 'krutikovasjustinas@justinas.lt' WHERE id=4;
-	// `);
-	// console.log(result);
-
-	// DELETE
-	const result = await connection.promise().execute(`
-	DELETE FROM users WHERE id=5;
-	 `);
-	console.log(result);
-}
