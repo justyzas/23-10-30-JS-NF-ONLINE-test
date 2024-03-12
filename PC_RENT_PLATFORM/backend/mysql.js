@@ -15,9 +15,14 @@ connection.connect((err) => {
 	}
 });
 
-async function execute(sql) {
-	const result = await connection.promise().execute(sql);
-	return result;
+async function execute(sql, parameters = []) {
+	try {
+		const result = await connection.promise().execute(sql, parameters);
+		return result;
+	} catch (err) {
+		console.error(`Error executing query: ${sql}, Error: ${err}`);
+		throw err;
+	}
 }
 
 module.exports = execute;
