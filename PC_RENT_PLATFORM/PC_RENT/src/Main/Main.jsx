@@ -1,18 +1,22 @@
+import { useEffect, useState } from "react";
+import { checkSession, logout } from "/utils/api/sessions";
+import { Link, useNavigate } from "react-router-dom";
+
 function AuthButtons() {
 	return (
 		<>
-			<a
-				href="/registration"
+			<Link
+				to="/registration"
 				className="px-4 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded mx-2"
 			>
 				Register now
-			</a>
-			<a
-				href="/login"
+			</Link>
+			<Link
+				to="/login"
 				className="px-4 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded mx-2"
 			>
 				Log In
-			</a>
+			</Link>
 		</>
 	);
 }
@@ -78,18 +82,43 @@ function PcPost() {
 }
 
 export default function Main() {
-	const isLoggedIn = false;
+	const navigate = useNavigate();
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	useEffect(() => {
+		checkSession((data) => {
+			setIsLoggedIn(data.isLoggedIn);
+			// if (!data.isLoggedIn) {
+			// 	navigate("/login");
+			// }
+		});
+	}, [navigate]);
+	function logOut() {
+		logout((response) => {
+			if (response.status) {
+				setIsLoggedIn(false);
+			}
+		});
+	}
+	// const isLoggedIn = true;
 	return (
 		<div className="  flex justify-center items-center">
 			<div className="container w-[80%] bg-slate-100 min-h-[90vh]   rounded-lg p-6">
 				{!isLoggedIn && <AuthButtons />}
 				{isLoggedIn && (
-					<a
-						href="/add-new-pc"
-						className="px-4 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded mx-2"
-					>
-						Pridėti nuomos skelbimą
-					</a>
+					<div className="flex justify-between">
+						<Link
+							to="/add-new-pc"
+							className="px-4 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded mx-2"
+						>
+							Pridėti nuomos skelbimą
+						</Link>
+						<button
+							className="px-4 py-1 bg-red-600 hover:bg-red-700 text-white rounded mx-2"
+							onClick={logOut}
+						>
+							Atsijungti
+						</button>
+					</div>
 				)}
 
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">

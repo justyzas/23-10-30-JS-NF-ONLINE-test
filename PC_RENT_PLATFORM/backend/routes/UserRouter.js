@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require("../model/UserModel");
 const Address = require("../model/AddressModel");
 const security = require("../utils/security");
-
+let currentAddressId;
 router.post("/register", async (req, res) => {
 	try {
 		const {
@@ -33,7 +33,7 @@ router.post("/register", async (req, res) => {
 			apartmentNumber,
 		});
 		await newAddress.save();
-
+		currentAddressId = newAddress.id;
 		const salt = security.generateSalt();
 		const hashedPassword = security.hashPassword(password, salt);
 		const newUser = new User({
@@ -45,6 +45,7 @@ router.post("/register", async (req, res) => {
 			phone,
 			addressId: newAddress.id,
 		});
+
 		await newUser.save();
 		// 3. Užregistruoti vartotojo sesiją
 		req.session.user = {
@@ -61,6 +62,7 @@ router.post("/register", async (req, res) => {
 		});
 	} catch (err) {
 		console.error(err);
+		// Address.deleteById(currentAddressId);
 		if (err.errno === 1062) {
 			res.status(400).json({ message: "Duomenys yra neunikalūs" });
 		} else {
@@ -70,15 +72,67 @@ router.post("/register", async (req, res) => {
 });
 
 // Login route
+router.post("/login", async (req, res) => {
+	try {
+		const { username, password } = req.body;
+		if (!username || !password)
+			return res
+				.status(400)
+				.json({
+					message: "Prašome pateikti pilną prisijungimo informaciją",
+					status: false,
+				});
+		const existingUser = await User.findByUsername(username);
+		if (!existingUser)
+			return res
+				.status(404)
+				.json({
+					message: "Vartotojas tokiu pavadinmu buvo nerastas",
+					status: false,
+				});
+
+		if (
+			!security.isValidPassword(
+				password,
+				existingUser.salt,
+				existingUser.passEncoded
+			)
+		)
+			return res
+				.status(400)
+				.json({
+					message: "Prisijungimo duomenys yra netinkami",
+					status: false,
+				});
+		req.session.user = {
+			username: existingUser.username,
+			email: existingUser.email,
+			id: existingUser.id,
+		};
+
+		req.session.isLoggedIn = true;
+		res
+			.status(200)
+			.json({ message: "sekmingai prisijungete prie sistemos", status: true });
+	} catch (err) {
+		console.log(err);
+		res.status(500).json({ message: "Vidine serverio klaida.", status: false });
+	}
+});
+
 // Log out route
+
 router.get("/logout", async (req, res) => {
 	if (req.session.isLoggedIn) {
 		req.session.destroy();
-		return res.status(200).json({ message: "Sekmingai buvote atjungtas" });
-	} else {
 		return res
 			.status(200)
-			.json({ messsage: "Tam kad atsijungti pirmiausia turite prisijungti" });
+			.json({ message: "Sekmingai buvote atjungtas", status: true });
+	} else {
+		return res.status(200).json({
+			messsage: "Tam kad atsijungti pirmiausia turite prisijungti",
+			status: false,
+		});
 	}
 });
 

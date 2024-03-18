@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function NotFound() {
 	return (
 		<div className="w-[100vw] h-[100vh] flex justify-center items-center not-found-bg">
@@ -30,12 +32,12 @@ export default function NotFound() {
 					this message, please contact our support team for assistance.
 					We&apos;re here to help you navigate and find exactly what you need.
 				</p>
-				<a
-					href="/"
+				<Link
+					to="/"
 					className="bg-purple-600 hover:bg-purple-700 px-4 py-1 rounded-lg text-xl"
 				>
 					Go Home
-				</a>
+				</Link>
 			</div>
 		</div>
 	);

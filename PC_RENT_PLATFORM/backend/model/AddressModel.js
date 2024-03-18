@@ -116,7 +116,16 @@ module.exports = class Address {
 		);
 	}
 
+	async delete() {
+		//kvieciama is objekto
+		const result = await executeQuery(`DELETE FROM addresses WHERE id = ?;`, [
+			this.#id,
+		]);
+		if (result.affectedRows === 0) throw new Error("Address not found");
+		return result;
+	}
 	static async deleteById(id) {
+		//kvieciama is klases
 		const result = await executeQuery(`DELETE FROM addresses WHERE id = ?;`, [
 			id,
 		]);
