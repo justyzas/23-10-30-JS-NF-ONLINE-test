@@ -1,28 +1,29 @@
 const mysql = require("mysql2");
+require("dotenv").config();
 
 const connection = mysql.createConnection({
-	host: "localhost",
-	user: "root",
-	password: "1234",
-	database: "pc_rent_platform",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
 });
 
 connection.connect((err) => {
-	if (err) console.log(err);
-	else {
-		console.log("Connected to database!");
-		// executeStatement();
-	}
+  if (err) console.log(err);
+  else {
+    console.log("Connected to database!");
+    // executeStatement();
+  }
 });
 
 async function execute(sql, parameters = []) {
-	try {
-		const result = await connection.promise().execute(sql, parameters);
-		return result;
-	} catch (err) {
-		console.error(`Error executing query: ${sql}, Error: ${err}`);
-		throw err;
-	}
+  try {
+    const result = await connection.promise().execute(sql, parameters);
+    return result;
+  } catch (err) {
+    console.error(`Error executing query: ${sql}, Error: ${err}`);
+    throw err;
+  }
 }
 
 module.exports = execute;
