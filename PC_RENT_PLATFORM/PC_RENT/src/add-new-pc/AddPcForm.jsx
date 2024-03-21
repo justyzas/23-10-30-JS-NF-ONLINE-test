@@ -1,8 +1,10 @@
 import { useEffect, useRef } from "react";
+import { savePc } from "../../utils/api/pcService";
+import { useNavigate } from "react-router-dom";
 
 export default function AddPcForm() {
   console.log("Komponentas persikrove");
-
+  const navigate = useNavigate();
   // 1. Budas susisrinkti informacija iš ivesties laukeliu
 
   const cpuInputRef = useRef(null);
@@ -26,6 +28,8 @@ export default function AddPcForm() {
 
   function registerNewPc(e) {
     e.preventDefault();
+    //Prevencija nuo netiketo formos išsiuntimo
+    if (e.pageX === 0 && e.pageY === 0) return;
     // 1. Budas susisrinkti informacija iš ivesties laukeliu
     const newPcObject = {
       cpu: cpuInputRef.current.value,
@@ -37,6 +41,13 @@ export default function AddPcForm() {
     };
 
     console.log(newPcObject);
+    savePc(newPcObject, (response) => {
+      if (response.status) navigate("/");
+      else {
+        alert("Pridejimas prie duomenu bazes buvo nesekmingas");
+      }
+    });
+
     // 2. Budas susisrinkti informacija iš ivesties laukeliu
     // console.log(pcData.current);
   }
