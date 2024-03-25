@@ -1,10 +1,9 @@
 import { useEffect, useRef } from "react";
 import { savePc } from "../../utils/api/pcService";
-import { useNavigate } from "react-router-dom";
 
 export default function AddPcForm() {
 	console.log("Komponentas persikrove");
-	const navigate = useNavigate();
+	// const [files, setFiles] = useState([]);
 	// 1. Budas susisrinkti informacija iš ivesties laukeliu
 
 	const cpuInputRef = useRef(null);
@@ -14,6 +13,7 @@ export default function AddPcForm() {
 	const ramAmountInputRef = useRef(null);
 	const computerTypeInputRef = useRef(null);
 	const pcNameInputRef = useRef(null);
+	const pcImagesInputRef = useRef(null);
 
 	useEffect(() => {
 		console.log("Suveike useEffect");
@@ -44,18 +44,17 @@ export default function AddPcForm() {
 		//Prevencija nuo netiketo formos išsiuntimo
 		if (e.pageX === 0 && e.pageY === 0) return;
 		// 1. Budas susisrinkti informacija iš ivesties laukeliu
-		const newPcObject = {
-			pc_name: pcNameInputRef.current.value,
-			cpu: cpuInputRef.current.value,
-			gpu: gpuInputRef.current.value,
-			ramType: ramAmountInputRef.current.value,
-			ramSpeed: ramSpeedInputRef.current.value,
-			ramAmount: ramAmountInputRef.current.value,
-			pcType: computerTypeInputRef.current.value,
-		};
-
-		console.log(newPcObject);
-		savePc(newPcObject, (response) => {
+		const formData = new FormData();
+		formData.append("pc_name", pcNameInputRef.current.value);
+		formData.append("cpu", cpuInputRef.current.value);
+		formData.append("gpu", gpuInputRef.current.value);
+		formData.append("ramType", ramTypeInputRef.current.value);
+		formData.append("ramSpeed", ramSpeedInputRef.current.value);
+		formData.append("ramAmount", ramAmountInputRef.current.value);
+		formData.append("pcType", computerTypeInputRef.current.value);
+		formData.append("files", pcImagesInputRef.current.value);
+		console.log(formData.get("files"));
+		savePc(formData, (response) => {
 			if (response.status) navigate("/");
 			else {
 				alert("Pridejimas prie duomenu bazes buvo nesekmingas");
@@ -184,6 +183,25 @@ export default function AddPcForm() {
 								<option>Laptop</option>
 								<option>Desktop Computer</option>
 							</select>
+						</label>
+					</div>
+					<div className="mb-2">
+						<label>
+							<span className="w-1/5 inline-block select-none">
+								Computer image
+							</span>
+							<input
+								type="file"
+								accept=".jpg,.png"
+								multiple
+								ref={pcImagesInputRef}
+								onChange={(e) => {
+									if (e.target.files.length > 2) {
+										alert("Maximum files chosen: 2");
+										e.target.value = "";
+									}
+								}}
+							/>
 						</label>
 					</div>
 					<button

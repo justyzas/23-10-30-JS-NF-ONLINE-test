@@ -68,7 +68,6 @@ module.exports = class PC {
 
 	static async findAll() {
 		const results = await executeQuery(`SELECT * FROM pc`);
-		console.log(results);
 		return results[0].map(
 			(pcObj) =>
 				new PC(
@@ -86,10 +85,10 @@ module.exports = class PC {
 				)
 		);
 	}
-
+	static async findByOwnerId(id) {}
 	static async findById(id) {
 		const results = await executeQuery(`SELECT * FROM pc WHERE id = ?`, [id]);
-		const pc = results[0];
+		const pc = results[0][0];
 		return new PC(
 			{
 				ownerId: pc.owner_id,
