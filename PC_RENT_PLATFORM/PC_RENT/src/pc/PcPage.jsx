@@ -4,11 +4,13 @@ import { getById } from "/utils/api/pcService";
 export default function PcPage() {
 	const [isPcFound, setIsPcFound] = useState(false);
 	const [pcDetails, setPcDetails] = useState({});
+	const [pcImages, setPcImages] = useState([]);
 	const { id } = useParams();
 	useEffect(() => {
 		getById(id, (resp) => {
 			setIsPcFound(resp.status);
 			setPcDetails(resp.pc);
+			setPcImages(resp.pcImages);
 		});
 	}, []);
 
@@ -18,11 +20,14 @@ export default function PcPage() {
 			<main className="container mx-auto relative min-h-[100vh]">
 				<div className="absolute translate-x-1/2 translate-y-1/2 right-1/2 bottom-1/2 bg-blue-100 min-w-[400px] w-[60%] rounded-xl overflow-hidden">
 					<div className="pc-image bg-blue-50">
-						<img
-							src="w-full"
-							alt="pc-image"
-							className="min-h-[200px]"
-						/>
+						{pcImages.map((image) => (
+							<img
+								src={"/server/api/" + image.uri}
+								key={image.id}
+								alt="pc-image"
+								className="min-h-[200px]"
+							/>
+						))}
 					</div>
 					<div className="p-4">
 						<h3 className="text-xl font-bold text-center mb-4">

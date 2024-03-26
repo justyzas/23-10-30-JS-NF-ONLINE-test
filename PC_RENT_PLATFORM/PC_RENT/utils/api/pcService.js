@@ -6,7 +6,6 @@ export async function savePc(pc, callback) {
 	});
 
 	const response = await promise.json();
-
 	callback(response);
 }
 export async function getAllPcs(callback) {

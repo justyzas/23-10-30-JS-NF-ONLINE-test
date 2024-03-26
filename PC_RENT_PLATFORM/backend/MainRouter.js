@@ -8,4 +8,5 @@ router.use("/user", userRouter);
 router.use("/pc", pcRouter);
 router.use("/country", countryRouter);
 
+router.use("/uploads", express.static("uploads"));
 module.exports = router;

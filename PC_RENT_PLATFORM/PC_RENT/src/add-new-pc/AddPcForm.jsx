@@ -1,11 +1,12 @@
 import { useEffect, useRef } from "react";
 import { savePc } from "../../utils/api/pcService";
+import { useNavigate } from "react-router-dom";
 
 export default function AddPcForm() {
 	console.log("Komponentas persikrove");
 	// const [files, setFiles] = useState([]);
 	// 1. Budas susisrinkti informacija iš ivesties laukeliu
-
+	const navigate = useNavigate();
 	const cpuInputRef = useRef(null);
 	const gpuInputRef = useRef(null);
 	const ramTypeInputRef = useRef(null);
@@ -52,8 +53,10 @@ export default function AddPcForm() {
 		formData.append("ramSpeed", ramSpeedInputRef.current.value);
 		formData.append("ramAmount", ramAmountInputRef.current.value);
 		formData.append("pcType", computerTypeInputRef.current.value);
-		formData.append("files", pcImagesInputRef.current.value);
-		console.log(formData.get("files"));
+
+		const files = pcImagesInputRef.current.files;
+		for (let i = 0; i < files.length; i++) formData.append("files", files[i]);
+
 		savePc(formData, (response) => {
 			if (response.status) navigate("/");
 			else {

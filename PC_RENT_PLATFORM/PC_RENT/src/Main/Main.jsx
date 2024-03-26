@@ -27,27 +27,18 @@ function AuthButtons() {
 function PcPost({ pc }) {
 	console.log(pc);
 
-	function choosePcImage(pcType) {
-		// if (pcType === "Desktop Computer") {
-		// 	return desktopImage;
-		// }
-		switch (pcType) {
-			case "Desktop Computer":
-				return desktopImage;
-			case "Laptop":
-				return laptopImage;
-			case "Macbook":
-				return macImage;
-			default:
-				return "https://placehold.co/400x300";
-		}
+	function choosePcImage(pc) {
+		const pcImagesArray = pc.images;
+		if (pcImagesArray.length !== 0)
+			return `/server/api/${pcImagesArray[0].uri}`;
+		else return "https://placehold.co/400x300";
 	}
 	return (
 		<div className="flex justify-center items-center">
 			<div className="bg-white min-h-[300px] min-w-[100px] max-w-[250px]">
 				<div className="img">
 					<img
-						src={choosePcImage(pc.pcType)}
+						src={choosePcImage(pc)}
 						className="w-full"
 					/>
 				</div>
