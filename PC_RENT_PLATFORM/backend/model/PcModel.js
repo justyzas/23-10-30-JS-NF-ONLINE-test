@@ -1,5 +1,5 @@
 const executeQuery = require("../mysql");
-
+const joinPcs = require("../utils/pcMapper");
 module.exports = class PC {
 	#id; // Private field for PC ID
 	ownerId;
@@ -85,7 +85,54 @@ module.exports = class PC {
 				)
 		);
 	}
-	static async findByOwnerId(id) {}
+	static async findAllWithImages() {
+		const [results] = await executeQuery(
+			"SELECT pc.*, pc_images.id AS image_id, pc_images.uri AS image_uri FROM pc LEFT JOIN pc_images ON pc.id = pc_images.pc_id"
+		);
+		const allPcsWithoutImages = results.map(
+			(row) =>
+				new PC(
+					{
+						ownerId: row.owner_id,
+						cpu: row.cpu,
+						gpu: row.gpu,
+						ramType: row.ram_type,
+						ramSpeed: row.ram_speed,
+						ramAmount: row.ram_amount,
+						pcType: row.pc_type,
+						pcName: row.pc_name,
+					},
+					row.id
+				)
+		);
+		return joinPcs(allPcsWithoutImages, results);
+	}
+	static async findAllByOwnerId(ownerId) {}
+	static async findAllByOwnerIdWithImages(ownerId) {
+		const [results] = await executeQuery(
+			"SELECT pc.*, pc_images.id AS image_id, pc_images.uri AS image_uri FROM pc LEFT JOIN pc_images ON pc.id = pc_images.pc_id WHERE owner_id = ?",
+			[ownerId]
+		);
+		const allPcsWithoutImages = results.map(
+			(row) =>
+				new PC(
+					{
+						ownerId: row.owner_id,
+						cpu: row.cpu,
+						gpu: row.gpu,
+						ramType: row.ram_type,
+						ramSpeed: row.ram_speed,
+						ramAmount: row.ram_amount,
+						pcType: row.pc_type,
+						pcName: row.pc_name,
+					},
+					row.id
+				)
+		);
+		return joinPcs(allPcsWithoutImages, results);
+	}
+	static async findByIdWithImage(id) {}
+
 	static async findById(id) {
 		const results = await executeQuery(`SELECT * FROM pc WHERE id = ?`, [id]);
 		const pc = results[0][0];
