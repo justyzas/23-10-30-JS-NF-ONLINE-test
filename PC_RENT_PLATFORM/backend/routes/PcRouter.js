@@ -47,11 +47,10 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/my-pcs", async (req, res) => {
-	console.log("LABAS");
 	if (!req.session.isLoggedIn)
 		return res.status(403).json({ message: "Unauthorized", status: false });
 	const allPcs = await PcModel.findAllByOwnerIdWithImages(req.session.user.id);
-	return res
+	res
 		.status(200)
 		.json({ allPcs: allPcs.map((pc) => pc.getInstance()), status: true });
 });
