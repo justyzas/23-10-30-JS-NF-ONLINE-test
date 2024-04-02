@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const PcModel = require("../model/PcModel");
-const PcImageModel = require("../model/PcImageModel");
+const PcModel = require("../model_v1/PcModel");
+const PcImageModel = require("../model_v1/PcImageModel");
 const upload = require("../utils/multerConfig");
 
 router.post("/", upload.array("files", 2), async (req, res) => {
@@ -43,7 +43,7 @@ router.post("/", upload.array("files", 2), async (req, res) => {
 
 router.get("/", async (req, res) => {
 	const allPcsWithImages = await PcModel.findAllWithImages();
-	res.status(200).json(allPcsWithImages);
+	res.status(200).json(allPcsWithImages.map((pc) => pc.getInstance()));
 });
 
 router.get("/my-pcs", async (req, res) => {

@@ -1,12 +1,15 @@
 const db = require("./models");
 const User = db.User;
 async function main() {
+	await User.sync({ alter: true });
 	// Naujų įrašų pridėjimas prie duomenų bazės;
 	// const newUser = await User.create({
 	// 	username: "John",
 	// 	password: "Doe",
 	// 	email: "john.d@doe.com",
+	// 	age: 18,
 	// });
+	// console.log(newUser);
 	// const anotherUser = await User.create({
 	// 	username: "John",
 	// 	password: "Joe",
@@ -23,33 +26,32 @@ async function main() {
 	// console.log(data.map((d) => d.toJSON()));
 
 	//Vieno įrašo perskatymas iš duomenų bazės;
-	const petras = await User.findOne({
-		where: {
-			username: "Petras",
-			// email: "krilin@petras.com",
-			// password: "drtfgthyjkl",
-		},
-	});
-	console.log(petras.toJSON());
+	// const john = await User.findOne({
+	// 	where: {
+	// 		email: "john.d@doe.com",
+	// 		// email: "krilin@petras.com",
+	// 		// password: "drtfgthyjkl",
+	// 	},
+	// });
+	// console.log(john.toJSON());
 
 	// Išrynimas turint modelio objektą
 	// await data[0].destroy({ force: true });
 	//Ištrynimas neturint modelio objekto
 	// await User.destroy({
 	// 	where: {
-	// 		username: "John",
+	// 		username: "-> John",
 	// 	},
-	// 	force: true,
 	// });
 	//Atnaujinimas neturint modelio objekto
-	// await User.update(
-	// 	{ password: "strongerPassword123" },
-	// 	{
-	// 		where: {
-	// 			password: "1234",
-	// 		},
-	// 	}
-	// );
+	await User.update(
+		{ password: "strongerPassword123" },
+		{
+			where: {
+				password: "1234",
+			},
+		}
+	);
 }
 
 main();

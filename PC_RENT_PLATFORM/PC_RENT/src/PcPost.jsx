@@ -7,7 +7,7 @@ export default function PcPost({ pc }) {
 	}
 	return (
 		<div className="flex justify-center items-center">
-			<div className="bg-white min-h-[300px] min-w-[100px] max-w-[250px]">
+			<div className="bg-white min-h-[300px] min-w-[100px] max-w-[250px] border my-4 rounded">
 				<div className="img">
 					<img
 						src={choosePcImage(pc)}

@@ -37,6 +37,6 @@ module.exports = (sequelize, DataTypes) => {
 			allowNull: false,
 		},
 	});
-	// User.sync({ alter: true });
+
 	return User;
 };
