@@ -55,4 +55,20 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+const associate = () => {
+	db.User.hasOne(db.Address);
+	db.Address.belongsTo(db.User);
+	db.Pc.belongsTo(db.User);
+	db.User.hasMany(db.Pc);
+	db.PcImage.belongsTo(db.Pc);
+	db.Pc.hasMany(db.PcImage);
+
+	db.User.sync();
+	db.PcImage.sync();
+	db.Pc.sync();
+	db.Address.sync();
+};
+
+associate();
+
 module.exports = db;

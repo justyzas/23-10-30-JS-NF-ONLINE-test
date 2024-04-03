@@ -17,6 +17,6 @@ module.exports = (sequelize, DataTypes) => {
 			timestamps: false,
 		}
 	);
-	Country.sync({ alter: true });
+	// Country.sync();
 	return Country;
 };

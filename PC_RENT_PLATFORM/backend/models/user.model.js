@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
 			timestamps: false,
 		}
 	);
-	Address.sync({ alter: true });
+
 	const User = sequelize.define(
 		"User",
 		{
@@ -73,13 +73,20 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.STRING,
 				allowNull: false,
 			},
+			addressId: {
+				type: DataTypes.INTEGER,
+				foreignKey: true,
+			},
 		},
 		{
 			timestamps: true,
 		}
 	);
-	User.Address = User.hasOne(Address);
+	User.hasOne(Address);
+	Address.belongsTo(User);
+
 	// console.log(db);
-	User.sync({ alter: true });
-	return User;
+	Address.sync();
+	User.sync();
+	return { User, Address };
 };

@@ -39,6 +39,6 @@ module.exports = (sequelize, DataTypes) => {
 			timestamps: false,
 		}
 	);
-	Address.sync({ alter: true });
+	// Address.sync();
 	return Address;
 };
